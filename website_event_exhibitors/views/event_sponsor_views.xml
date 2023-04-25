@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="event_sponsor_view_form" model="ir.ui.view">
+        <field name="name">event_sponsor_view_form.inherit</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Stand Requirements" autofocus="autofocus">
+                    <group>
+                        <group>
+                            <field name="stand_number"/>
+                            <field name="stand_type_id"/>
+                        </group>
+                        <group>
+                            <field name="stand_width"/>
+                            <field name="stand_length"/>
+                            <field name="stand_surface_area"/>
+                        </group>
+                    </group>
+                    <group string="Exhibitor's Remarks">
+                        <field name="remarks" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

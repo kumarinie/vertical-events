@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="event_exhibitors_register" name="Event Exhibitors Register">
+    <t t-call="website_event.layout">
+        <div class="o_wevent_online o_wevent_online_bg o_wesponsor_index">
+            <!-- Drag/Drop Area -->
+            <div id="oe_structure_wesponsor_index_1" class="oe_structure"/>
+            <!-- Content -->
+            <div class="o_wesponsor_container container">
+                <div class="row">
+                    <t t-call="website_event_exhibitors.exhibitors_register_main"/>
+                </div>
+            </div>
+            <!-- Drag/Drop Area -->
+            <div id="oe_structure_wesponsor_index_2" class="oe_structure mb-5"/>
+        </div>
+    </t>
+</template>
+
+
+<!-- ============================================================ -->
+<!-- CONTENT: MAIN TEMPLATES -->
+<!-- ============================================================ -->
+
+<!-- Exhibitors Main Display -->
+<template id="exhibitors_register_main" name="Exhibitors: Main Display">
+
+    <div class="h2 mb-3">Register as Exhibitor</div>
+
+    <!-- Register Form -->
+    <div class="col-12" t-call="website_event_exhibitors.exhibitors_register_form"/>
+</template>
+
+<!-- Exhibitors: Registration Form -->
+<template id="exhibitors_register_form" name="Exhibitors Register Form">
+    <div class="container">
+        <t t-call="website_event_exhibitors.exhibitor_registration_template"/>
+    </div>
+</template>
+
+</odoo>
