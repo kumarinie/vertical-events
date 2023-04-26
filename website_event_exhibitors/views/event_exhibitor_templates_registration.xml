@@ -56,7 +56,6 @@
                             <div class="col-lg my-2">
                                 <label>Stand Type </label>
                                 <select class="form-control" t-attf-name="#{counter}-stand_type_id">
-                                   <option t-attf-value="'none'">None</option>
                                     <t t-foreach="stand_types" t-as="stype">
                                         <option t-attf-value="#{stype.id}"><t t-esc="stype.name"/></option>
                                     </t>
