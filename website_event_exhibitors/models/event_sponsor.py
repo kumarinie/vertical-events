@@ -22,7 +22,7 @@ class Sponsor(models.Model):
 
     # New
     visitor_id = fields.Many2one('website.visitor', string='Visitor', ondelete='set null')
-    stand_number = fields.Integer(string='Stand Number')
+    stand_number = fields.Char(string='Stand Number')
     stand_width = fields.Integer(string='Width (m)', help="Width of Stand in mtrs")
     stand_length = fields.Integer(string='Length (m)', help="Width of Stand in mtrs")
     stand_surface_area = fields.Integer(string='Surface Area (sq.m)', compute='_compute_surface_area'
@@ -32,7 +32,7 @@ class Sponsor(models.Model):
 
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
-            , 'stand_width', 'stand_length', 'remarks'}
+            , 'stand_width', 'stand_length', 'remarks', 'stand_type_id'}
 
     @api.depends('stand_width', 'stand_length')
     def _compute_surface_area(self):

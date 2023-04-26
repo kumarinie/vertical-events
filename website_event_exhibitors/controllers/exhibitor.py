@@ -16,14 +16,14 @@ from odoo.exceptions import UserError
 
 class ExhibitorRegisterController(EventTrackController):
 
-    def _get_event_sponsors_base_domain(self, event):
-        search_domain_base = [
-            ('event_id', '=', event.id),
-            ('is_exhibitor', '=', True),
-        ]
-        if not request.env.user.has_group('event.group_event_user'):
-            search_domain_base = expression.AND([search_domain_base, [('is_published', '=', True)]])
-        return search_domain_base
+    # def _get_event_sponsors_base_domain(self, event):
+    #     search_domain_base = [
+    #         ('event_id', '=', event.id),
+    #         ('is_exhibitor', '=', True),
+    #     ]
+    #     if not request.env.user.has_group('event.group_event_user'):
+    #         search_domain_base = expression.AND([search_domain_base, [('is_published', '=', True)]])
+    #     return search_domain_base
 
     # ------------------------------------------------------------
     # MAIN PAGE
@@ -41,45 +41,49 @@ class ExhibitorRegisterController(EventTrackController):
 
     def _event_exhibitors_get_values(self, event, **searches):
         # init and process search terms
-        searches.setdefault('search', '')
-        searches.setdefault('countries', '')
-        searches.setdefault('sponsorships', '')
-        search_domain_base = self._get_event_sponsors_base_domain(event)
-        search_domain = search_domain_base
+        # searches.setdefault('search', '')
+        # searches.setdefault('countries', '')
+        # searches.setdefault('sponsorships', '')
+        # search_domain_base = self._get_event_sponsors_base_domain(event)
+        # search_domain = search_domain_base
 
         # fetch data to display; use sudo to allow reading partner info, be sure domain is correct
         event = event.with_context(tz=event.date_tz or 'UTC')
-        sponsors = request.env['event.sponsor'].sudo().search(search_domain)
-        sponsors_all = request.env['event.sponsor'].sudo().search(search_domain_base)
-        sponsor_types = sponsors_all.mapped('sponsor_type_id')
-        sponsor_countries = sponsors_all.mapped('partner_id.country_id').sorted('name')
-        # organize sponsors into categories to help display
-        sponsor_categories = dict()
-        for sponsor in sponsors:
-            if not sponsor_categories.get(sponsor.sponsor_type_id):
-                sponsor_categories[sponsor.sponsor_type_id] = request.env['event.sponsor'].sudo()
-            sponsor_categories[sponsor.sponsor_type_id] |= sponsor
-        sponsor_categories = [
-            dict({
-                'sponsorship': sponsor_category,
-                'sponsors': sample(sponsors, len(sponsors)),
-            }) for sponsor_category, sponsors in sponsor_categories.items()]
-
-
+        # sponsors = request.env['event.sponsor'].sudo().search(search_domain)
+        # sponsors_all = request.env['event.sponsor'].sudo().search(search_domain_base)
+        # sponsor_types = sponsors_all.mapped('sponsor_type_id')
+        # sponsor_countries = sponsors_all.mapped('partner_id.country_id').sorted('name')
+        # # organize sponsors into categories to help display
+        # sponsor_categories = dict()
+        # for sponsor in sponsors:
+        #     if not sponsor_categories.get(sponsor.sponsor_type_id):
+        #         sponsor_categories[sponsor.sponsor_type_id] = request.env['event.sponsor'].sudo()
+        #     sponsor_categories[sponsor.sponsor_type_id] |= sponsor
+        # sponsor_categories = [
+        #     dict({
+        #         'sponsorship': sponsor_category,
+        #         'sponsors': sample(sponsors, len(sponsors)),
+        #     }) for sponsor_category, sponsors in sponsor_categories.items()]
+        #
+        # StandTypes = [{'1': 'CS', '2':'MS'}]
+        StandTypes = request.env['event.stand.type'].sudo().search([])
 
         # return rendering values
         return {
             # event information
             'event': event,
             'main_object': event,
-            'sponsor_categories': sponsor_categories,
-            'hide_sponsors': True,
+
+            # 'sponsor_categories': sponsor_categories,
+            # 'hide_sponsors': True,
             # search information
-            'searches': searches,
-            'search_key': searches['search'],
+            # 'searches': searches,
+            # 'search_key': searches['search'],
             # environment
             'hostname': request.httprequest.host.split(':')[0],
             'user_event_manager': request.env.user.has_group('event.group_event_manager'),
+
+            'stand_types': StandTypes
         }
 
 
@@ -97,7 +101,7 @@ class ExhibitorRegisterController(EventTrackController):
 
 
     def _process_exhibitor_data_form(self, event, form_details):
-        """ Process data posted from the attendee details form.
+        """ Process data posted from the exhibitor details form.
 
         :param form_details: posted data from frontend registration form, like
             {'1-name': 'r', '1-email': 'r@r.com', '1-phone': '', '1-event_ticket_id': '1'}
