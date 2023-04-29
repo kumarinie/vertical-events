@@ -25,6 +25,13 @@
 
                         <div class="row">
                             <div class="col-lg my-2">
+                                <label>Company Name</label>
+                                <input class="form-control" type="text" t-attf-name="#{counter}-partner_company"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg my-2">
                                 <label>Email</label>
                                 <input class="form-control" type="email" t-attf-name="#{counter}-email" required="This field is required"/>
                             </div>
@@ -105,7 +112,7 @@
                         </span>
                         <span>
                             <i class="fa fa-phone mr-2"></i>
-                            <t t-if="attendee.phone" t-esc="attendee.phone"/>
+                            <t t-if="attendee.mobile" t-esc="attendee.mobile"/>
                             <t t-else="">N/A</t>
                         </span>
                     </div>

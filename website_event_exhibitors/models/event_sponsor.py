@@ -29,10 +29,11 @@ class Sponsor(models.Model):
                                         , help="Surface Area for Stand in Sq mtrs", store=True)
     stand_type_id = fields.Many2one('event.stand.type', string='Stand Type', ondelete='set null')
     remarks = fields.Text('Remarks')
+    partner_company = fields.Char(string='Partner Company')
 
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
-            , 'stand_width', 'stand_length', 'remarks', 'stand_type_id'}
+                , 'stand_width', 'stand_length', 'remarks', 'stand_type_id', 'partner_company'}
 
     @api.depends('stand_width', 'stand_length')
     def _compute_surface_area(self):

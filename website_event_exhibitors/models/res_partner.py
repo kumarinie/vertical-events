@@ -8,4 +8,4 @@ class Partner(models.Model):
     _inherit = ["res.partner"]
 
 
-    exhibitor_status = fields.Selection([('draft', 'Draft Exhibitor'), ('confirmed', 'Exhibitor')], 'Exhibitor?')
+    exhibitor_status = fields.Selection([('draft', 'Draft Exhibitor'), ('confirmed', 'Exhibitor')], 'Exhibitor?', copy=False)
