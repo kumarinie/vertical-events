@@ -176,13 +176,20 @@ class ExhibitorRegisterController(EventTrackController):
         for registration_values in registration_data:
             registration_values['event_id'] = event.id
 
-            if request.env.ref('base.public_user').id != request.env.user.partner_id.id:
-                registration_values['partner_id'] = request.env.user.partner_id.id
-                UserLoggedIn = True
-                _logger.info("IF : Logged in User")
-            elif visitor_sudo:
+            # if request.env.ref('base.public_user').id != request.env.user.partner_id.id:
+            #     registration_values['partner_id'] = request.env.user.partner_id.id
+            #     UserLoggedIn = True
+            #     _logger.info("IF : Logged in User")
+            # elif visitor_sudo:
+            #     registration_values['partner_id'] = visitor_sudo.partner_id.id
+            #     _logger.info("Else : Visitor %s"%(visitor_sudo.partner_id.name))
+
+            if visitor_sudo.partner_id:
                 registration_values['partner_id'] = visitor_sudo.partner_id.id
-                _logger.info("Else : Visitor")
+                _logger.info("IF : No Partner & Visitor %s"%(visitor_sudo.partner_id))
+            else:
+                registration_values['partner_id'] = request.env.user.partner_id.id
+                _logger.info("Else : No Partner %s"%(request.env.user.partner_id))
 
             if visitor_sudo:
                 # registration may give a name to the visitor, yay
@@ -191,25 +198,41 @@ class ExhibitorRegisterController(EventTrackController):
                 # update registration based on visitor
                 registration_values['visitor_id'] = visitor_sudo.id
 
-            # To Create Partner
-            for field in {"name", "phone", "mobile", "partner_company"}:
-                partner_values[field] = registration_values.get(field, '')
+            # # To Create Partner
+            # for field in {"name", "phone", "mobile", "partner_company"}:
+            #     partner_values[field] = registration_values.get(field, '')
+
+            # # Create/Link Partner:
+            # if registration_values.get("email"):
+            #     Partner = request.env["res.partner"]
+            #     # Look for a partner with that email
+            #     email = registration_values.get("email").replace("%", "").replace("_", "\\_")
+            #     partner = Partner.search([("email", "=ilike", email)], limit=1)
+            #     if UserLoggedIn:
+            #         partner = request.env.user.partner_id
+            #     elif not partner:
+            #         # Create New partner
+            #         partner = Partner.sudo().create(
+            #             self._prepare_partner(partner_values)
+            #         )
+            #     registration_values["partner_id"] = partner.id
+
 
             registration_values['sponsor_type_id'] = 1  # TODO: Need this? deep
             registrations_to_create.append(registration_values)
 
-            # Create Partner:
-            if registration_values.get("email"):
-                Partner = request.env["res.partner"]
-                if not UserLoggedIn:
-                    # Create partner
-                    partner = Partner.sudo().create(
-                        self._prepare_partner(partner_values)
-                    )
-                else:
-                    partner = request.env.user.partner_id
-
-                registration_values["partner_id"] = partner.id
+            # # Create Partner:
+            # if registration_values.get("email"):
+            #     Partner = request.env["res.partner"]
+            #     if not UserLoggedIn:
+            #         # Create partner
+            #         partner = Partner.sudo().create(
+            #             self._prepare_partner(partner_values)
+            #         )
+            #     else:
+            #         partner = request.env.user.partner_id
+            #
+            #     registration_values["partner_id"] = partner.id
 
         if visitor_values:
             visitor_sudo.write(visitor_values)

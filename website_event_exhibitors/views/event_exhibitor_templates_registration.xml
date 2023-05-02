@@ -72,6 +72,13 @@
 
                         <div class="row">
                             <div class="col-lg my-2">
+                                <label>Your Products or Services </label>
+                                <textarea  class="form-control" name="prod_remarks" t-attf-name="#{counter}-prod_remarks"/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg my-2">
                                 <label>Remarks </label>
                                 <textarea  class="form-control" name="remarks" t-attf-name="#{counter}-remarks"/>
                             </div>

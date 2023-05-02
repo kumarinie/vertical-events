@@ -7,21 +7,36 @@
         <field name="model">event.sponsor</field>
         <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>
         <field name="arch" type="xml">
+
+            <xpath expr="/form/sheet" position="before">
+               <header>
+                   <button name="button_confirm" type="object" states="draft" string="Confirm" class="oe_highlight"/>
+                   <button name="button_reject" type="object" states="draft" string="Reject" />
+                   <field name="state" widget="statusbar" nolabel="1"/>
+               </header>
+            </xpath>
+
             <xpath expr="//notebook" position="inside">
                 <page string="Stand Requirements" autofocus="autofocus">
                     <group>
                         <group>
-                            <field name="stand_number"/>
                             <field name="stand_type_id"/>
-                        </group>
-                        <group>
                             <field name="stand_width"/>
                             <field name="stand_length"/>
                             <field name="stand_surface_area"/>
                         </group>
+                        <group>
+                            <field name="lead_id"/>
+                            <field name="stand_number"/>
+                        </group>
                     </group>
-                    <group string="Exhibitor's Remarks">
-                        <field name="remarks" nolabel="1"/>
+                    <group>
+                        <group string="Exhibitor's Products &amp; Services">
+                            <field name="prod_remarks" nolabel="1"/>
+                        </group>
+                        <group string="Exhibitor's Remarks">
+                            <field name="remarks" nolabel="1"/>
+                        </group>
                     </group>
                 </page>
             </xpath>
