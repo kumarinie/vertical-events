@@ -3,6 +3,10 @@
 
 from odoo import api, fields, models, _
 
+import logging
+
+_logger = logging.getLogger(__name__)
+
 
 class StandType(models.Model):
     _name = 'event.stand.type'
@@ -56,6 +60,7 @@ class Sponsor(models.Model):
             Confirm status of Partner from "Draft Exhibitor" to "Confirmed Exhibitor"
             Create Lead with information
         '''
+
         for case in self.filtered(lambda x: x.state == 'draft'):
             # Update partner status
             if case.partner_id.exhibitor_status == 'draft':
@@ -63,13 +68,24 @@ class Sponsor(models.Model):
                 if case.partner_id.parent_id:
                     case.partner_id.parent_id.exhibitor_status = 'confirmed'
 
-            # Mark Lead as WON
-            case.lead_id.action_set_won()
+            lead, partner = case.lead_id, False
+
+            if lead.partner_id: partner = lead.partner_id.id
+            else:
+                partner = lead._find_matching_partner()
+                _logger.info("Else >>> Find Matching %s"%(partner))
+
+            if not partner:
+                lead.handle_partner_assignment(create_missing=True)
+                partner = lead.partner_id.id
+                _logger.info("Nope >>> Handle Assignment %s"%(partner))
+            lead.convert_opportunity(partner)
             case.write({'state': 'confirm'})
         return True
 
     def button_reject(self):
         for case in self.filtered(lambda x: x.state == 'draft'):
+            case.lead_id.action_set_lost()
             case.write({'state': 'reject'})
         return True
 

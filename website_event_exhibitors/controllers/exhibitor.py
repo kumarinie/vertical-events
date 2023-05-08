@@ -332,7 +332,7 @@ class ExhibitorRegisterController(EventTrackController):
     def _create_lead(self, values):
         LeadObj = request.env['crm.lead']
         values.update(
-            LeadObj.default_get(['stage_id'])
+            LeadObj.default_get(['type', 'stage_id'])
         )
         values.update({'type': 'lead'})
 
