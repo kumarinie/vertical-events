@@ -62,24 +62,26 @@ class Sponsor(models.Model):
         '''
 
         for case in self.filtered(lambda x: x.state == 'draft'):
-            # Update partner status
-            if case.partner_id.exhibitor_status == 'draft':
-                case.partner_id.exhibitor_status = 'confirmed'
-                if case.partner_id.parent_id:
-                    case.partner_id.parent_id.exhibitor_status = 'confirmed'
-
             lead, partner = case.lead_id, False
 
-            if lead.partner_id: partner = lead.partner_id.id
+            # Convert to Opportunity
+            if lead.partner_id: partner = lead.partner_id
             else:
                 partner = lead._find_matching_partner()
                 _logger.info("Else >>> Find Matching %s"%(partner))
 
             if not partner:
                 lead.handle_partner_assignment(create_missing=True)
-                partner = lead.partner_id.id
+                partner = lead.partner_id
                 _logger.info("Nope >>> Handle Assignment %s"%(partner))
-            lead.convert_opportunity(partner)
+            lead.convert_opportunity(partner.id)
+
+            # Update partner status
+            if partner.exhibitor_status == 'draft':
+                partner.exhibitor_status = 'confirmed'
+                if partner.parent_id:
+                    partner.parent_id.exhibitor_status = 'confirmed'
+
             case.write({'state': 'confirm'})
         return True
 

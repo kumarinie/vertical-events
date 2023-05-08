@@ -21,6 +21,4 @@ class CrmLead(models.Model):
                 "exhibitor_status": 'draft'
             })
 
-        _logger.info('_prepare_customer_values %s'%(name))
-
         return values
