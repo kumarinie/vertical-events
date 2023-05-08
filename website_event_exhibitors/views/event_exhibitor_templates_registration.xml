@@ -19,32 +19,32 @@
                         <div class="row">
                             <div class="col-lg my-2">
                                 <label>Name</label>
-                                <input class="form-control" type="text" t-attf-name="#{counter}-name" required="This field is required"/>
+                                <input class="form-control" type="text" t-attf-name="#{counter}-name" t-att-value="name" required="This field is required"/>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg my-2">
                                 <label>Company Name</label>
-                                <input class="form-control" type="text" t-attf-name="#{counter}-partner_company"/>
+                                <input class="form-control" type="text" t-attf-name="#{counter}-partner_company" t-att-value="partner_company" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg my-2">
                                 <label>Email</label>
-                                <input class="form-control" type="email" t-attf-name="#{counter}-email" required="This field is required"/>
+                                <input class="form-control" type="email" t-attf-name="#{counter}-email" t-att-value="email" required="This field is required"/>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-lg my-2">
                                 <label>Mobile </label>
-                                <input class="form-control" type="tel" t-attf-name="#{counter}-mobile" required="This field is required"/>
+                                <input class="form-control" type="tel" t-attf-name="#{counter}-mobile" t-att-value="mobile" required="This field is required"/>
                             </div>
                             <div class="col-lg my-2">
                                 <label>Phone <small>(Optional)</small></label>
-                                <input class="form-control" type="tel" t-attf-name="#{counter}-phone"/>
+                                <input class="form-control" type="tel" t-attf-name="#{counter}-phone" t-att-value="phone" />
                             </div>
                         </div>
 

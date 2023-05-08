@@ -60,7 +60,11 @@ class Sponsor(models.Model):
             # Update partner status
             if case.partner_id.exhibitor_status == 'draft':
                 case.partner_id.exhibitor_status = 'confirmed'
-            case._create_lead()
+                if case.partner_id.parent_id:
+                    case.partner_id.parent_id.exhibitor_status = 'confirmed'
+
+            # Mark Lead as WON
+            case.lead_id.action_set_won()
             case.write({'state': 'confirm'})
         return True
 
@@ -68,17 +72,6 @@ class Sponsor(models.Model):
         for case in self.filtered(lambda x: x.state == 'draft'):
             case.write({'state': 'reject'})
         return True
-
-    def _create_lead(self):
-        self.ensure_one()
-        LeadObj = self.env['crm.lead']
-        Lead = LeadObj.create({
-            'name': "Event: %s | %s"%(self.event_id.name, self.name),
-            'type': 'lead',
-            'stage_id': False,
-            'partner_id': self.partner_id.id,
-        })
-        self.lead_id = Lead.id
 
 
 

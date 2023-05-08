@@ -30,14 +30,15 @@
                             <field name="stand_number"/>
                         </group>
                     </group>
-                    <group>
-                        <group string="Exhibitor's Products &amp; Services">
-                            <field name="prod_remarks" nolabel="1"/>
-                        </group>
-                        <group string="Exhibitor's Remarks">
-                            <field name="remarks" nolabel="1"/>
-                        </group>
-                    </group>
+
+                    <div class="oe_title">
+                        <label for="prod_remarks" string="Exhibitor's Products &amp; Services" class="oe_edit_only"/>
+                        <field name="prod_remarks" nolabel="1"/>
+                    </div>
+                    <div string="Exhibitor's Remarks" class="oe_title">
+                        <label for="remarks" string="Exhibitor's Remarks" class="oe_edit_only"/>
+                        <field name="remarks" nolabel="1"/>
+                    </div>
                 </page>
             </xpath>
         </field>
