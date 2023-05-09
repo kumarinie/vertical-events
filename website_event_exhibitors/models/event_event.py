@@ -16,6 +16,8 @@ class EventEvent(models.Model):
         'website.event.menu', 'event_id', string='Exhibitors Register Menus',
         domain=[('menu_type', '=', 'exhibitor_register')])
 
+    team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
+
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
     def _compute_exhibitor_register_menu(self):
         for event in self:

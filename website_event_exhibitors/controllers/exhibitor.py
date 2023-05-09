@@ -284,6 +284,7 @@ class ExhibitorRegisterController(EventTrackController):
                 'phone': registration_values['phone'],
                 'name': "Event: %s | %s" % (event.name, registration_values['name']),
                 'partner_name': registration_values['partner_company'],
+                'team_id': event.team_id.id or False,
             })
 
             registration_values['lead_id'] = self._create_lead(lead_vals)
