@@ -19,6 +19,7 @@
                 <label for="exhibitor_register_menu"/>
                 <field name="exhibitor_register_menu"/>
             </xpath>
+
         </field>
     </record>
 
@@ -34,6 +35,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='event_type_id']" position="after">
                 <field name="team_id"/>
+                <field name="attribute_value_id" required="1"/>
             </xpath>
         </field>
     </record>

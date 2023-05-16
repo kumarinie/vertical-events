@@ -255,19 +255,14 @@ class ExhibitorRegisterController(EventTrackController):
         registrations_to_create = []
         lead_vals = {}
 
-        _logger.info('Exhibitor Registration Data %s'%(registration_data))
-
         for registration_values in registration_data:
             registration_values['event_id'] = event.id
 
             if visitor_sudo.partner_id:
                 registration_values['partner_id'] = visitor_sudo.partner_id.id
                 lead_vals['partner_id'] = visitor_sudo.partner_id.id
-
-                _logger.info("IF : No Partner & Visitor %s"%(visitor_sudo.partner_id))
             else:
                 registration_values['partner_id'] = request.env.user.partner_id.id
-                _logger.info("Else : No Partner %s"%(request.env.user.partner_id))
 
             if visitor_sudo:
                 # registration may give a name to the visitor, yay
@@ -285,6 +280,7 @@ class ExhibitorRegisterController(EventTrackController):
                 'name': "Event: %s | %s" % (event.name, registration_values['name']),
                 'partner_name': registration_values['partner_company'],
                 'team_id': event.team_id.id or False,
+                'event_id': event.id
             })
 
             registration_values['lead_id'] = self._create_lead(lead_vals)
@@ -293,9 +289,6 @@ class ExhibitorRegisterController(EventTrackController):
 
         if visitor_values:
             visitor_sudo.write(visitor_values)
-
-        _logger.info('EE Registration Data [2] %s'%(registrations_to_create))
-
 
         return request.env['event.sponsor'].sudo().create(registrations_to_create)
 
@@ -308,26 +301,6 @@ class ExhibitorRegisterController(EventTrackController):
             'google_url': urls.get('google_url'),
             'iCal_url': urls.get('iCal_url')
         }
-
-
-    # def _prepare_partner(self, vals):
-    #
-    #     companyID = False
-    #     if vals.get('partner_company'):
-    #         Partner = request.env["res.partner"]
-    #         companyID = Partner.sudo().create({'name': vals.get('partner_company'),
-    #                                            'is_company': True, "exhibitor_status":'draft'}).id
-    #
-    #     _logger.info('partner company !!! %s' % (companyID))
-    #
-    #     return {
-    #         "name": vals.get("name") or vals.get("email"),
-    #         "email": vals.get("email", False),
-    #         "phone": vals.get("phone", False),
-    #         "mobile": vals.get("mobile", False),
-    #         "parent_id": companyID,
-    #         "exhibitor_status": 'draft'
-    #     }
 
 
     def _create_lead(self, values):

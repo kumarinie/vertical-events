@@ -92,4 +92,31 @@ class Sponsor(models.Model):
         return True
 
 
+    def action_open_leads(self):
+        self.ensure_one()
+        if not self.lead_id: return False
+
+        return {
+            'name': _('Lead'),
+            'view_mode': 'form',
+            'res_model': 'crm.lead',
+            'res_id' : self.lead_id.id,
+            'type': 'ir.actions.act_window',
+            'context': {'create': False, 'active_test': False},
+        }
+
+    def action_open_sales(self):
+        self.ensure_one()
+        if not self.sale_ids: return False
+
+        return {
+            'name': _('Lead'),
+            'view_mode': 'form',
+            'res_model': 'crm.lead',
+            'res_id' : self.lead_id.id,
+            'type': 'ir.actions.act_window',
+            'context': {'create': False, 'active_test': False},
+        }
+
+
 

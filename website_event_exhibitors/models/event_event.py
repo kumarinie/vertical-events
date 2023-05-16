@@ -18,6 +18,14 @@ class EventEvent(models.Model):
 
     team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
 
+    attribute_value_id = fields.Many2one('product.attribute.value', string='Product Attribute', tracking=True
+                                         , domain=lambda self: self._get_domain_attr_id())
+
+    @api.model
+    def _get_domain_attr_id(self):
+        return [("attribute_id", "=", self.env.ref('website_event_exhibitors.attribute_event').id)]
+
+
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
     def _compute_exhibitor_register_menu(self):
         for event in self:
