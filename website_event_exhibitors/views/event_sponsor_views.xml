@@ -25,7 +25,7 @@
                         <group>
                             <field name="stand_type_id"/>
                             <field name="stand_width"/>
-                            <field name="stand_length"/>
+                            <field name="stand_depth"/>
                             <field name="stand_surface_area"/>
                         </group>
                         <group>

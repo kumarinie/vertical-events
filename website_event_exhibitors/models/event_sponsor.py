@@ -28,7 +28,7 @@ class Sponsor(models.Model):
     visitor_id = fields.Many2one('website.visitor', string='Visitor', ondelete='set null')
     stand_number = fields.Char(string='Stand Number')
     stand_width = fields.Integer(string='Width (m)', help="Width of Stand in mtrs")
-    stand_length = fields.Integer(string='Length (m)', help="Width of Stand in mtrs")
+    stand_depth = fields.Integer(string='Depth (m)', help="Depth of Stand in mtrs")
     stand_surface_area = fields.Integer(string='Surface Area (sq.m)', compute='_compute_surface_area'
                                         , help="Surface Area for Stand in Sq mtrs", store=True)
     stand_type_id = fields.Many2one('event.stand.type', string='Stand Type', ondelete='set null')
@@ -46,13 +46,13 @@ class Sponsor(models.Model):
 
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
-                , 'stand_width', 'stand_length', 'remarks', 'stand_type_id', 'partner_company'
+                , 'stand_width', 'stand_depth', 'remarks', 'stand_type_id', 'partner_company'
                 , 'prod_remarks'}
 
-    @api.depends('stand_width', 'stand_length')
+    @api.depends('stand_width', 'stand_depth')
     def _compute_surface_area(self):
         for case in self:
-            case.stand_surface_area = case.stand_width * case.stand_length
+            case.stand_surface_area = case.stand_width * case.stand_depth
 
 
     def button_confirm(self):
