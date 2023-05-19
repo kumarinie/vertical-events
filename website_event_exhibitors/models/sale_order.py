@@ -12,19 +12,6 @@ class SaleOrder(models.Model):
     event_id = fields.Many2one('event.event', string='Event')
     event_attr_value_id = fields.Many2one('product.attribute.value', related='event_id.attribute_value_id', store=True)
 
-    # event_product_ids = fields.Many2many('product.product', compute='_get_event_related_products')
-    #
-    # @api.depends('event_id')
-    # def _get_event_related_products(self):
-    #     self.event_product_ids = False
-    #
-    #     for case in self:
-    #         if not case.event_id: continue
-    #         linked_products = self.env['product.template.attribute.value'].search(
-    #             [('product_attribute_value_id', '=', case.event_id.attribute_value_id.id)]).with_context(
-    #             active_test=False).ptav_product_variant_ids
-    #
-    #         case.event_product_ids = linked_products
 
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
