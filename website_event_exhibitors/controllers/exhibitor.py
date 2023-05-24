@@ -271,19 +271,19 @@ class ExhibitorRegisterController(EventTrackController):
                 # update registration based on visitor
                 registration_values['visitor_id'] = visitor_sudo.id
 
-            # Lead Creation
-            lead_vals.update({
-                'contact_name': registration_values['name'],
-                'email_from': registration_values['email'],
-                'mobile': registration_values['mobile'],
-                'phone': registration_values['phone'],
-                'name': "Event: %s | %s" % (event.name, registration_values['name']),
-                'partner_name': registration_values['partner_company'],
-                'team_id': event.team_id.id or False,
-                'event_id': event.id
-            })
-
-            registration_values['lead_id'] = self._create_lead(lead_vals)
+            # # Lead Creation
+            # lead_vals.update({
+            #     'contact_name': registration_values['name'],
+            #     'email_from': registration_values['email'],
+            #     'mobile': registration_values['mobile'],
+            #     'phone': registration_values['phone'],
+            #     'name': "Event: %s | %s" % (event.name, registration_values['name']),
+            #     'partner_name': registration_values['partner_company'],
+            #     'team_id': event.team_id.id or False,
+            #     'event_id': event.id
+            # })
+            #
+            # registration_values['lead_id'] = self._create_lead(lead_vals)
             registration_values['sponsor_type_id'] = 1  # FIXME: Remove this
             registrations_to_create.append(registration_values)
 
@@ -303,12 +303,12 @@ class ExhibitorRegisterController(EventTrackController):
         }
 
 
-    def _create_lead(self, values):
-        LeadObj = request.env['crm.lead']
-        values.update(
-            LeadObj.default_get(['type', 'stage_id'])
-        )
-        values.update({'type': 'lead'})
-
-        Lead = LeadObj.sudo().create(values)
-        return Lead.id
+    # def _create_lead(self, values):
+    #     LeadObj = request.env['crm.lead']
+    #     values.update(
+    #         LeadObj.default_get(['type', 'stage_id'])
+    #     )
+    #     values.update({'type': 'lead'})
+    #
+    #     Lead = LeadObj.sudo().create(values)
+    #     return Lead.id

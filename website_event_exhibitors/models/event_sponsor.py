@@ -68,6 +68,7 @@ class Sponsor(models.Model):
             if lead.partner_id: partner = lead.partner_id
             else:
                 partner = lead._find_matching_partner(email_only=True)
+                lead.handle_partner_assignment(force_partner_id=partner.id)
 
             if not partner:
                 lead.handle_partner_assignment(create_missing=True)
@@ -115,6 +116,38 @@ class Sponsor(models.Model):
             'type': 'ir.actions.act_window',
             'context': {'create': False, 'active_test': False},
         }
+
+
+    def _create_lead(self):
+        self.ensure_one()
+        LeadObj = self.env['crm.lead']
+        values = LeadObj.default_get(['type', 'stage_id'])
+        publicUsr = self.env.ref('base.public_user').id
+        if self.partner_id.id != publicUsr:
+            values['partner_id'] = self.partner_id.id
+
+        values.update({'type': 'lead',
+                'contact_name': self.name,
+                'email_from': self.email,
+                'mobile': self.mobile,
+                'phone': self.phone,
+                'name': "Event: %s | %s" % (self.event_id.name, self.name),
+                'partner_name': self.partner_company,
+                'team_id': self.event_id.team_id.id or False,
+                'event_id': self.event_id.id
+               })
+
+        Lead = LeadObj.sudo().create(values)
+        return Lead.id
+
+    @api.model_create_multi
+    def create(self, vals):
+        res = super(Sponsor, self).create(vals)
+        leadID = res._create_lead()
+        res.lead_id = leadID
+        return res
+
+
 
 
 
