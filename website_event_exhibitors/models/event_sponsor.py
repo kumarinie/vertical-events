@@ -18,7 +18,7 @@ class Sponsor(models.Model):
     _inherit = ["event.sponsor"]
 
     # Overridden:
-    partner_id = fields.Many2one(string='Partner')
+    partner_id = fields.Many2one(string='Partner', tracking=True)
     name = fields.Char(string='Exhibitor Name')
     email = fields.Char(string='Exhibitor Email')
     phone = fields.Char(string='Exhibitor Phone')
@@ -67,13 +67,11 @@ class Sponsor(models.Model):
             # Convert to Opportunity
             if lead.partner_id: partner = lead.partner_id
             else:
-                partner = lead._find_matching_partner()
-                _logger.info("Else >>> Find Matching %s"%(partner))
+                partner = lead._find_matching_partner(email_only=True)
 
             if not partner:
                 lead.handle_partner_assignment(create_missing=True)
                 partner = lead.partner_id
-                _logger.info("Nope >>> Handle Assignment %s"%(partner))
             lead.convert_opportunity(partner.id)
 
             # Update partner status

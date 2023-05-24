@@ -54,7 +54,7 @@ class CrmLead(models.Model):
         for lead in self:
             if not lead.event_id: continue
             # Update partner to Sponsor
-            if create_missing or force_partner_id:
-                es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
-                es.partner_id = lead.partner_id.id
+            _logger.info("print lead id %s"%(lead))
+            es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
+            es.partner_id = lead.partner_id.id
         return res
