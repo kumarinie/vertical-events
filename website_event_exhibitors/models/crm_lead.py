@@ -47,3 +47,14 @@ class CrmLead(models.Model):
         if self.user_id:
             action['context']['default_user_id'] = self.user_id.id
         return action
+
+    def handle_partner_assignment(self, force_partner_id=False, create_missing=True):
+        sponsor = self.env['event.sponsor']
+        res = super().handle_partner_assignment(force_partner_id, create_missing)
+        for lead in self:
+            if not lead.event_id: continue
+            # Update partner to Sponsor
+            if create_missing or force_partner_id:
+                es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
+                es.partner_id = lead.partner_id.id
+        return res
