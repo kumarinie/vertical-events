@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-<!--    <t t-if="uid">-->
-
+<!-- Exhibitor Registration: Layout    -->
 <template id="event_exhibitors_register" name="Event Exhibitors Register: Layout">
     <t t-if="uid" t-call="website_event.layout">
         <t t-call="website_event_exhibitors.exhibitors_register_main"/>
@@ -11,33 +10,6 @@
         <t t-call="website_event_exhibitors.exhibitors_register_main"/>
     </t>
 </template>
-
-<!--    -->
-<!--<template id="event_exhibitors_register" name="Event Exhibitors Register: Layout">-->
-<!--    <t t-call="website_event.layout">-->
-
-<!--            <t t-call="website_event_exhibitors.exhibitors_register_main"/>-->
-<!--        -->
-
-<!--&lt;!&ndash;        <div class="o_wevent_online o_wevent_online_bg o_wesponsor_index">&ndash;&gt;-->
-<!--&lt;!&ndash;            &lt;!&ndash; Drag/Drop Area &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div id="oe_structure_wesponsor_index_1" class="oe_structure"/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            &lt;!&ndash; Content &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;            <div class="o_wesponsor_container container">&ndash;&gt;-->
-<!--&lt;!&ndash;                <div class="row">&ndash;&gt;-->
-<!--&lt;!&ndash;                    <t t-call="website_event_exhibitors.exhibitors_register_main"/>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            &lt;!&ndash; Drag/Drop Area &ndash;&gt;&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;&lt;!&ndash;            <div id="oe_structure_wesponsor_index_2" class="oe_structure mb-5"/>&ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;        </div>&ndash;&gt;-->
-<!--    </t>-->
-<!--</template>-->
-
-
-<!--&lt;!&ndash; ============================================================ &ndash;&gt;-->
-<!--&lt;!&ndash; CONTENT: MAIN TEMPLATES &ndash;&gt;-->
-<!--&lt;!&ndash; ============================================================ &ndash;&gt;-->
 
 
 <!-- Exhibitors Main Display -->
@@ -66,27 +38,5 @@
     </div>
 
 </template>
-
-<!--&lt;!&ndash; Exhibitors Main Display &ndash;&gt;-->
-<!--<template id="exhibitors_register_main" name="Exhibitors: Main Display">-->
-
-<!--    <div class="p-3">-->
-<!--        <h6><strong><span>Request information </span><span t-field="env.company.display_name"/></strong></h6>-->
-<!--        <small><span>Would you like to receive more information, the registration form with prices or a tailor-made offer?-->
-<!--        After registering for our exhibitor database, we will send you the information digitally and will contact you shortly for further-->
-<!--        coordination of wishes and possibilities.</span></small>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Register Form &ndash;&gt;-->
-<!--    <div class="col-12" t-call="website_event_exhibitors.exhibitors_register_form"/>-->
-
-<!--</template>-->
-
-<!--&lt;!&ndash; Exhibitors: Registration Form &ndash;&gt;-->
-<!--<template id="exhibitors_register_form" name="Exhibitors Register Form">-->
-<!--    <div class="container">-->
-<!--        <t t-call="website_event_exhibitors.exhibitor_registration_template"/>-->
-<!--    </div>-->
-<!--</template>-->
 
 </odoo>
