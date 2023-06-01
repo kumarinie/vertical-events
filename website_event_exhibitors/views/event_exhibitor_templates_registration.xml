@@ -182,9 +182,9 @@
 -->
 <template id="registration_complete_form" name="Exhibitor Registration Submitted Form">
 
-    <div t-if="not uid" class="p-3">
-        <a href="https://www.50plusbeurs.nl/" class="btn btn-primary">Home</a>
-    </div>
+<!--    <div t-if="not uid" class="p-3">-->
+<!--        <a href="https://www.50plusbeurs.nl/" class="btn btn-primary">Home</a>-->
+<!--    </div>-->
     
     <div class="container my-5 o_wereg_confirmed">
         <div class="row mb-3">
