@@ -21,9 +21,13 @@ class EventEvent(models.Model):
     attribute_value_id = fields.Many2one('product.attribute.value', string='Product Attribute', tracking=True
                                          , domain=lambda self: self._get_domain_attr_id())
 
+    brand_id = fields.Many2one("res.brand", string="Brand")
+
+
     @api.model
     def _get_domain_attr_id(self):
-        return [("attribute_id", "=", self.env.ref('website_event_exhibitors.attribute_event').id)]
+        attr = self.env.ref('website_event_exhibitors.attribute_event', raise_if_not_found=False)
+        return [("attribute_id", "=", attr and attr.id or False)]
 
 
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
@@ -60,3 +64,8 @@ class EventEvent(models.Model):
     def _get_exhibitor_register_menu_entries(self):
         self.ensure_one()
         return [(_('Register as Exhibitor'), '/event/%s/exhibitors_register' % slug(self), False, 60, 'exhibitor_register')]
+
+    @api.onchange("team_id")
+    def _onchange_team_id(self):
+        if self.team_id.brand_id:
+            self.brand_id = self.team_id.brand_id

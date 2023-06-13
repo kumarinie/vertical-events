@@ -18,12 +18,6 @@ class SaleOrderLine(models.Model):
 
     @api.model
     def _get_domain4event_products(self):
-        # attr_eventID = self.env.ref("website_event_exhibitors.attribute_event").id
-        # linked_products = self.env['product.template.attribute.value'].search(
-        #     [('product_attribute_value_id', '=', attr_eventID)]).with_context(active_test=False).ptav_product_variant_ids.ids
-        #
-        # _logger.info("_get_domain4event_products %s"%(parent.event_product_ids)
-
         # FIXME
         # If Event/Attribute not found, set default domain
         # return "[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('id', 'in', parent.event_product_ids)]"

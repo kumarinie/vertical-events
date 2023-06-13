@@ -12,6 +12,7 @@ class CrmLead(models.Model):
     _inherit = "crm.lead"
 
     event_id = fields.Many2one('event.event', string='Event')
+    brand_id = fields.Many2one("res.brand", string="Brand")
 
 
     def _prepare_customer_values(self, name, is_company=False, parent_id=False):
@@ -20,6 +21,7 @@ class CrmLead(models.Model):
             name, is_company=is_company, parent_id=parent_id
         )
         values.update({
+                "user_id": False,
                 "exhibitor_status": 'draft'
             })
 
@@ -40,12 +42,11 @@ class CrmLead(models.Model):
             'default_source_id': self.source_id.id,
             'default_company_id': self.company_id.id or self.env.company.id,
             'default_tag_ids': [(6, 0, self.tag_ids.ids)],
-            'default_event_id': self.event_id.id
+            'default_event_id': self.event_id.id,
+            'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
+            'default_team_id': self.team_id.id,
+            'default_user_id': self.env.user.id,
         }
-        if self.team_id:
-            action['context']['default_team_id'] = self.team_id.id,
-        if self.user_id:
-            action['context']['default_user_id'] = self.user_id.id
         return action
 
     def handle_partner_assignment(self, force_partner_id=False, create_missing=True):
@@ -54,7 +55,6 @@ class CrmLead(models.Model):
         for lead in self:
             if not lead.event_id: continue
             # Update partner to Sponsor
-            _logger.info("print lead id %s"%(lead))
             es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
             es.partner_id = lead.partner_id.id
         return res

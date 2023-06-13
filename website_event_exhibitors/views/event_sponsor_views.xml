@@ -28,6 +28,7 @@
                                 <field name="stand_width"/>
                                 <field name="stand_depth"/>
                                 <field name="stand_surface_area"/>
+                                <field name="stand_construction"/>
                             </group>
                             <group>
                                 <field name="lead_id"/>
@@ -56,7 +57,76 @@
                 </button>
             </xpath>
 
+            <xpath expr="//field[@name='sponsor_type_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
         </field>
     </record>
+
+
+    <!--
+        Event Sponsor: website_event_track_exhibitor
+    -->
+    <record id="event_sponsor_view_form2" model="ir.ui.view">
+        <field name="name">event_sponsor_view_form.inherit2</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='is_exhibitor']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Kanban)
+     -->
+    <record id="event_sponsor_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">event.sponsor.view.kanban.inherit.kanban</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_track.event_sponsor_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[1]" position="replace">
+                <div class="oe_kanban_global_click overflow-hidden">
+                    <div class="row my-auto">
+                        <img t-att-src="kanban_image('event.sponsor', 'image_128', record.id.raw_value)" alt="Sponsor image" class="col-4"/>
+                        <div class="col-8">
+                            <h1 class="o_kanban_record_title"><field name="partner_company"/></h1>
+                            <div>Contact: <field name="name"/></div>
+                            <span class="o_text_overflow" t-esc="record.partner_email.value"/>
+                            <span class="o_text_overflow" t-esc="record.url.value"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Sponsor (Tree)
+    -->
+    <record id="event_sponsor_view_tree" model="ir.ui.view">
+        <field name="name">event.sponsor.view.tree</field>
+        <field name="model">event.sponsor</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" default_order="id desc">
+                <field name="id" groups="base.group_no_one"/>
+                <field name="sequence" widget="handle"/>
+                <field name="partner_company" string="Exhibitor Company"/>
+                <field name="name"/>
+                <field name="email"/>
+                <field name="phone"/>
+                <field name="mobile"/>
+                <field name="stand_number"/>
+                <field name="state" decoration-success="state == 'confirm'" decoration-info="state == 'draft'" widget="badge" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
 
 </odoo>

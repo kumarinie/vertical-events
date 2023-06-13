@@ -74,8 +74,6 @@ class ExhibitorRegisterController(EventTrackController):
         allowed_fields = request.env['event.sponsor']._get_website_registration_allowed_fields()
         registration_fields = {key: v for key, v in request.env['event.sponsor']._fields.items() if key in allowed_fields}
 
-        _logger.info('process Registration Data  \n<allowed_fields> %s \n<registration_fields> %s'%(allowed_fields, registration_fields))
-
         registrations = {}
         global_values = {}
         for key, value in form_details.items():

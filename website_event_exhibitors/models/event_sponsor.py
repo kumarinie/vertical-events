@@ -10,8 +10,10 @@ _logger = logging.getLogger(__name__)
 
 class StandType(models.Model):
     _name = 'event.stand.type'
+    _order = 'sequence'
 
     name = fields.Char('Stand Type', required=True)
+    sequence = fields.Integer(default=10)
 
 
 class Sponsor(models.Model):
@@ -36,6 +38,7 @@ class Sponsor(models.Model):
     prod_remarks = fields.Text('Products / Services')
     partner_company = fields.Char(string='Partner Company')
     lead_id = fields.Many2one('crm.lead', string='Lead')
+    stand_construction = fields.Boolean('Include Stand Construction')
 
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -74,6 +77,8 @@ class Sponsor(models.Model):
                 lead.handle_partner_assignment(create_missing=True)
                 partner = lead.partner_id
             lead.convert_opportunity(partner.id)
+            lead.team_id = lead.event_id and lead.event_id.team_id.id or False
+            lead.user_id = self.env.user
 
             # Update partner status
             if partner.exhibitor_status == 'draft':
@@ -126,6 +131,8 @@ class Sponsor(models.Model):
         if self.partner_id.id != publicUsr:
             values['partner_id'] = self.partner_id.id
 
+        langID = self.env['res.lang']._lang_get_id(self._context.get('lang'))
+
         values.update({'type': 'lead',
                 'contact_name': self.name,
                 'email_from': self.email,
@@ -134,7 +141,9 @@ class Sponsor(models.Model):
                 'name': "Event: %s | %s" % (self.event_id.name, self.name),
                 'partner_name': self.partner_company,
                 'team_id': self.event_id.team_id.id or False,
-                'event_id': self.event_id.id
+                'event_id': self.event_id.id,
+                'lang_id': langID,
+                'brand_id': self.event_id.brand_id.id or False,
                })
 
         Lead = LeadObj.sudo().create(values)

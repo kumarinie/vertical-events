@@ -36,6 +36,7 @@
             <xpath expr="//field[@name='event_type_id']" position="after">
                 <field name="team_id"/>
                 <field name="attribute_value_id" required="1"/>
+                <field name="brand_id"/>
             </xpath>
         </field>
     </record>
