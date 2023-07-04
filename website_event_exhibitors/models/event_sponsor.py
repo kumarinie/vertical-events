@@ -16,6 +16,14 @@ class StandType(models.Model):
     sequence = fields.Integer(default=10)
 
 
+class ExhibitionTheme(models.Model):
+    _name = 'event.exhibition.theme'
+    _order = 'sequence'
+
+    name = fields.Char('Exhibition Theme', required=True)
+    sequence = fields.Integer(default=10)
+
+
 class Sponsor(models.Model):
     _inherit = ["event.sponsor"]
     _order = "id desc"
@@ -41,6 +49,7 @@ class Sponsor(models.Model):
     partner_company = fields.Char(string='Partner Company')
     lead_id = fields.Many2one('crm.lead', string='Lead')
     stand_construction = fields.Boolean('Include Stand Construction')
+    theme_id = fields.Many2one('event.exhibition.theme', string='Theme of the Exhibition', ondelete='set null')
 
     state = fields.Selection([
         ('draft', 'Draft'),

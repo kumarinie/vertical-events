@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <!-- EVENTS/CONFIGURATION/EVENT Stand Types -->
+    <!--
+        Event Stand Types
+    -->
     <record id="event_stand_type_view_tree" model="ir.ui.view">
         <field name="name">Stand Types</field>
         <field name="model">event.stand.type</field>
@@ -23,7 +25,7 @@
         name="Stand Types"
         action="event_stand_type_action"
         parent="event.menu_event_configuration"
-        groups="base.group_no_one"
+        groups="event.group_event_manager"
         sequence="41"/>
 
 </odoo>

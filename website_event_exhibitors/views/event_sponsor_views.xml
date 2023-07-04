@@ -28,11 +28,12 @@
                                 <field name="stand_width"/>
                                 <field name="stand_depth"/>
                                 <field name="stand_surface_area"/>
-                                <field name="stand_construction"/>
                             </group>
                             <group>
                                 <field name="lead_id"/>
                                 <field name="stand_number"/>
+                                <field name="stand_construction"/>
+                                <field name="theme_id"/>
                             </group>
                         </group>
 
@@ -68,19 +69,6 @@
 
         </field>
     </record>
-
-
-<!--    &lt;!&ndash;-->
-<!--        Event Sponsor: website_event_track_exhibitor-->
-<!--    &ndash;&gt;-->
-<!--    <record id="event_sponsor_view_form2" model="ir.ui.view">-->
-<!--        <field name="name">event_sponsor_view_form.inherit2</field>-->
-<!--        <field name="model">event.sponsor</field>-->
-<!--        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>-->
-<!--        <field name="arch" type="xml">-->
-
-<!--        </field>-->
-<!--    </record>-->
 
 
     <!--
@@ -125,8 +113,27 @@
                 <field name="stand_number"/>
                 <field name="stand_surface_area"/>
                 <field name="stand_construction"/>
+                <field name="theme_id"/>
                 <field name="state" decoration-success="state == 'confirm'" decoration-info="state == 'draft'" widget="badge" optional="show"/>
             </tree>
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Search)
+    -->
+    <record id="event_sponsor_view_search" model="ir.ui.view">
+        <field name="name">event.sponsor.view.search.inherit.exhibitor</field>
+        <field name="model">event.sponsor</field>
+        <field name="priority">10</field>
+        <field name="inherit_id" ref="website_event_track.event_sponsor_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='archived']" position="after">
+                <separator/>
+                <filter string="Include Stand Construction" name="filter_incl_stand_construction" domain="[('stand_construction', '=', True)]"/>
+                <filter string="Exclude Stand Construction" name="filter_excl_stand_construction" domain="[('stand_construction', '!=', True)]"/>
+            </xpath>
         </field>
     </record>
 

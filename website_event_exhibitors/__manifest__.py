@@ -19,6 +19,7 @@
     'data': [
         'data/product_attribute.xml',
         'views/event_stand_views.xml',
+        'views/event_theme_views.xml',
         'views/event_event_views.xml',
         'views/event_sponsor_views.xml',
         'views/sale_order_views.xml',
