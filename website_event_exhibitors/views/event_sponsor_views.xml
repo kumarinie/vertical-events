@@ -61,25 +61,26 @@
                 <attribute name="invisible">1</attribute>
             </xpath>
 
-        </field>
-    </record>
-
-
-    <!--
-        Event Sponsor: website_event_track_exhibitor
-    -->
-    <record id="event_sponsor_view_form2" model="ir.ui.view">
-        <field name="name">event_sponsor_view_form.inherit2</field>
-        <field name="model">event.sponsor</field>
-        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>
-        <field name="arch" type="xml">
-
             <xpath expr="//field[@name='is_exhibitor']" position="attributes">
                 <attribute name="invisible">1</attribute>
             </xpath>
 
+
         </field>
     </record>
+
+
+<!--    &lt;!&ndash;-->
+<!--        Event Sponsor: website_event_track_exhibitor-->
+<!--    &ndash;&gt;-->
+<!--    <record id="event_sponsor_view_form2" model="ir.ui.view">-->
+<!--        <field name="name">event_sponsor_view_form.inherit2</field>-->
+<!--        <field name="model">event.sponsor</field>-->
+<!--        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--        </field>-->
+<!--    </record>-->
 
 
     <!--
@@ -120,9 +121,10 @@
                 <field name="partner_company" string="Exhibitor Company"/>
                 <field name="name"/>
                 <field name="email"/>
-                <field name="phone"/>
                 <field name="mobile"/>
                 <field name="stand_number"/>
+                <field name="stand_surface_area"/>
+                <field name="stand_construction"/>
                 <field name="state" decoration-success="state == 'confirm'" decoration-info="state == 'draft'" widget="badge" optional="show"/>
             </tree>
         </field>

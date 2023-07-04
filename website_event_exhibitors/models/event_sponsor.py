@@ -18,6 +18,7 @@ class StandType(models.Model):
 
 class Sponsor(models.Model):
     _inherit = ["event.sponsor"]
+    _order = "id desc"
 
     # Overridden:
     partner_id = fields.Many2one(string='Partner', tracking=True)
@@ -25,6 +26,7 @@ class Sponsor(models.Model):
     email = fields.Char(string='Exhibitor Email')
     phone = fields.Char(string='Exhibitor Phone')
     mobile = fields.Char(string='Exhibitor Mobile')
+    sponsor_type_id = fields.Many2one('event.sponsor.type', 'Sponsoring Type', required=False)
 
     # New
     visitor_id = fields.Many2one('website.visitor', string='Visitor', ondelete='set null')
