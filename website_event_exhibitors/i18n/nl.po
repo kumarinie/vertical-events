@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-13 13:26+0000\n"
-"PO-Revision-Date: 2023-06-13 13:26+0000\n"
+"POT-Creation-Date: 2023-07-04 12:31+0000\n"
+"PO-Revision-Date: 2023-07-04 12:31+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,17 @@ msgstr ""
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
+msgid "<span class=\"s_website_form_label_content\">Textboard</span>"
+msgstr "Tekstbord"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
+msgid ""
+"<span class=\"s_website_form_label_content\">Theme of the Exhibition</span>"
+msgstr "Thema van de beurs"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
 "<span class=\"s_website_form_label_content\">Your Company</span>\n"
 "                                 <span class=\"s_website_form_mark\"> *</span>"
@@ -166,6 +177,11 @@ msgid "Confirmed"
 msgstr "Bevestigd"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
+msgid "Construction"
+msgstr "Standbouw"
+
+#. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_res_partner
 msgid "Contact"
 msgstr ""
@@ -176,11 +192,13 @@ msgid "Contact:"
 msgstr ""
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__create_uid
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__create_uid
 msgid "Created by"
 msgstr "Aangemaakt door"
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__create_date
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__create_date
 msgid "Created on"
 msgstr "Aangemaakt op"
@@ -198,6 +216,7 @@ msgstr "Diepte van de stand in meters"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_crm_lead__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_event__display_name
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type__display_name
@@ -224,6 +243,11 @@ msgid "Draft Exhibitor"
 msgstr "Concept Exposant"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
+msgid "Email"
+msgstr "E-mail"
+
+#. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_event_event
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_crm_lead__event_id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order__event_id
@@ -232,9 +256,14 @@ msgid "Event"
 msgstr "Evenement"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_exhibition_theme_view_tree
+msgid "Event Exhibition Themes"
+msgstr ""
+
+#. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_event_sponsor
 msgid "Event Sponsor"
-msgstr "Evenement sponsor"
+msgstr "Evenement exposant"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_stand_type_view_tree
@@ -252,29 +281,46 @@ msgid "Event triggering the rule that created this lead"
 msgstr "Gebeurtenis die de regel activeert die deze lead heeft gemaakt."
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
+msgid "Exclude Stand Construction"
+msgstr "Exclusief Standbouw"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__name
+msgid "Exhibition Theme"
+msgstr "Beurs Thema"
+
+#. module: website_event_exhibitors
+#: model:ir.actions.act_window,name:website_event_exhibitors.event_exhibition_theme_action
+#: model:ir.ui.menu,name:website_event_exhibitors.menu_event_exhibition_theme
+msgid "Exhibition Themes"
+msgstr "Beurs Thema's"
+
+#. module: website_event_exhibitors
 #: model:ir.model.fields.selection,name:website_event_exhibitors.selection__res_partner__exhibitor_status__confirmed
 msgid "Exhibitor"
 msgstr "Exposant"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
 msgid "Exhibitor Company"
-msgstr ""
+msgstr "Exposant Bedrijf"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__email
-msgid "Exhibitor Email"
-msgstr "Exposant E-mail"
+msgid "Email"
+msgstr "E-mail"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__mobile
-msgid "Exhibitor Mobile"
-msgstr "Exposant Mobiel"
+msgid "Mobile"
+msgstr "Mobiel"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__name
-msgid "Exhibitor Name"
-msgstr "Exposant Naam"
+msgid "Name"
+msgstr "Naam"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__phone
@@ -317,6 +363,7 @@ msgstr "Exposant registratie menu’s"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_crm_lead__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_event__id
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type__id
@@ -329,12 +376,14 @@ msgstr ""
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__stand_construction
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
 msgid "Include Stand Construction"
 msgstr "Inclusief Standbouw"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_crm_lead____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_event____last_update
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type____last_update
@@ -346,11 +395,13 @@ msgid "Last Modified on"
 msgstr "Laatst gewijzigd op"
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__write_uid
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__write_uid
 msgid "Last Updated by"
 msgstr "Laatst gewijzigd door"
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__write_date
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__write_date
 msgid "Last Updated on"
 msgstr "Laatst gewijzigd op"
@@ -374,14 +425,25 @@ msgid "Menu Type"
 msgstr "Soort menu"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
+msgid "Mobile"
+msgstr ""
+
+#. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.registration_complete_form
 msgid "N/A"
 msgstr ""
 
 #. module: website_event_exhibitors
-#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_id
-msgid "Partner"
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
+msgid "Name"
 msgstr ""
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_id
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
+msgid "Partner"
+msgstr "Relatie"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_company
@@ -447,6 +509,7 @@ msgid "Sales Team"
 msgstr "Verkoopteam"
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__sequence
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__sequence
 msgid "Sequence"
 msgstr ""
@@ -455,6 +518,11 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_kanban_inherit
 msgid "Sponsor image"
 msgstr ""
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__sponsor_type_id
+msgid "Sponsoring Type"
+msgstr "Sponsor type"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__stand_number
@@ -480,6 +548,7 @@ msgstr "Stand soorten"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__state
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
 msgid "Status"
 msgstr ""
 
@@ -497,6 +566,32 @@ msgstr "Oppervlakte in m2"
 #: model:ir.model.fields,help:website_event_exhibitors.field_event_sponsor__stand_surface_area
 msgid "Surface Area for Stand in Sq mtrs"
 msgstr "Oppervlakte van de Stand in m2"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__textboard
+msgid "Textboard"
+msgstr "Tekstbord"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
+msgid "Textboard is not set"
+msgstr "Tekstbord is niet ingesteld"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
+msgid "Textboard is set"
+msgstr "Tekstbord is ingesteld"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
+msgid "Theme"
+msgstr "Thema"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__theme_id
+msgid "Theme of the Exhibition"
+msgstr "Thema van de beurs"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__visitor_id
@@ -517,6 +612,11 @@ msgstr "Breedte (m)"
 #: model:ir.model.fields,help:website_event_exhibitors.field_event_sponsor__stand_width
 msgid "Width of Stand in mtrs"
 msgstr "Breedte van de Stand in meter"
+
+#. module: website_event_exhibitors
+#: model:ir.model,name:website_event_exhibitors.model_event_exhibition_theme
+msgid "event.exhibition.theme"
+msgstr ""
 
 #. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_event_stand_type

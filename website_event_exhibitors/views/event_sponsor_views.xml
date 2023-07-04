@@ -30,9 +30,10 @@
                                 <field name="stand_surface_area"/>
                             </group>
                             <group>
-                                <field name="lead_id"/>
+                                <field name="lead_id" invisible="1"/>
                                 <field name="stand_number"/>
                                 <field name="stand_construction"/>
+                                <field name="textboard"/>
                                 <field name="theme_id"/>
                             </group>
                         </group>
@@ -107,13 +108,14 @@
                 <field name="id" groups="base.group_no_one"/>
                 <field name="sequence" widget="handle"/>
                 <field name="partner_company" string="Exhibitor Company"/>
-                <field name="name"/>
-                <field name="email"/>
-                <field name="mobile"/>
+                <field name="name" string="Name"/>
+                <field name="email" string="Email"/>
+                <field name="mobile" string="Mobile"/>
                 <field name="stand_number"/>
                 <field name="stand_surface_area"/>
-                <field name="stand_construction"/>
-                <field name="theme_id"/>
+                <field name="stand_construction" string="Construction"/>
+                <field name="textboard"/>
+                <field name="theme_id" string="Theme"/>
                 <field name="state" decoration-success="state == 'confirm'" decoration-info="state == 'draft'" widget="badge" optional="show"/>
             </tree>
         </field>
@@ -129,13 +131,48 @@
         <field name="priority">10</field>
         <field name="inherit_id" ref="website_event_track.event_sponsor_view_search"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="partner_company" string="Exhibitor Company"/>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="replace">
+                <field name="mobile"/>
+                <field name="stand_number"/>
+                <field name="textboard"/>
+                <field name="theme_id" string="Theme"/>
+            </xpath>
+
             <xpath expr="//filter[@name='archived']" position="after">
                 <separator/>
                 <filter string="Include Stand Construction" name="filter_incl_stand_construction" domain="[('stand_construction', '=', True)]"/>
                 <filter string="Exclude Stand Construction" name="filter_excl_stand_construction" domain="[('stand_construction', '!=', True)]"/>
+                <separator/>
+                <filter string="Textboard is set" name="filter_textboard_set" domain="[('textboard', '!=', False)]"/>
+                <filter string="Textboard is not set" name="filter_textboard_notset" domain="[('textboard', '=', False)]"/>
+            </xpath>
+
+            <xpath expr="//filter[@name='group_by_sponsor_type_id']" position="replace">
+                <filter string="Partner" name="group_by_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                <filter string="Theme" name="group_by_theme_id" domain="[]" context="{'group_by': 'theme_id'}"/>
+                <filter string="Status" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
             </xpath>
         </field>
     </record>
 
+
+    <!--
+        Sponsor (Search)
+        - website_event_track_exhibitor (Overridden)
+    -->
+    <record id="website_event_track_exhibitor.event_sponsor_view_search" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+
+    <!--
+        Sponsor (Action): Overridden
+    -->
+    <record id="website_event_track.event_sponsor_action_from_event" model="ir.actions.act_window">
+        <field name="name">Event Exhibitors</field>
+    </record>
 
 </odoo>

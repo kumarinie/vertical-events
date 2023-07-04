@@ -50,6 +50,7 @@ class Sponsor(models.Model):
     lead_id = fields.Many2one('crm.lead', string='Lead')
     stand_construction = fields.Boolean('Include Stand Construction')
     theme_id = fields.Many2one('event.exhibition.theme', string='Theme of the Exhibition', ondelete='set null')
+    textboard = fields.Char("Textboard", size=30)
 
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -61,7 +62,7 @@ class Sponsor(models.Model):
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
                 , 'stand_width', 'stand_depth', 'remarks', 'stand_type_id', 'partner_company'
-                , 'prod_remarks'}
+                , 'prod_remarks', 'theme_id', 'textboard'}
 
     @api.depends('stand_width', 'stand_depth')
     def _compute_surface_area(self):

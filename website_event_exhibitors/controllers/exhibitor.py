@@ -30,6 +30,7 @@ class ExhibitorRegisterController(EventTrackController):
 
     def _event_exhibitors_get_values(self, event, **searches):
         StandTypes = request.env['event.stand.type'].sudo().search([])
+        Themes = request.env['event.exhibition.theme'].sudo().search([])
         visitor_sudo = request.env['website.visitor']._get_visitor_from_request()
 
         # return rendering values
@@ -47,7 +48,8 @@ class ExhibitorRegisterController(EventTrackController):
             'hostname': request.httprequest.host.split(':')[0],
             'user_event_manager': request.env.user.has_group('event.group_event_manager'),
 
-            'stand_types': StandTypes
+            'stand_types': StandTypes,
+            'exhibition_themes': Themes,
         }
 
 
