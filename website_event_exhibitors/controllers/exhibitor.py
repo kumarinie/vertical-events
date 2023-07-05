@@ -30,8 +30,10 @@ class ExhibitorRegisterController(EventTrackController):
 
     def _event_exhibitors_get_values(self, event, **searches):
         StandTypes = request.env['event.stand.type'].sudo().search([])
-        Themes = request.env['event.exhibition.theme'].sudo().search([])
         visitor_sudo = request.env['website.visitor']._get_visitor_from_request()
+
+        Themes = request.env['event.exhibition.theme'].sudo().search([('event_ids', 'in', [event.id])])
+
 
         # return rendering values
         return {

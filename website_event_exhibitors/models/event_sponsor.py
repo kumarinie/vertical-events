@@ -22,6 +22,8 @@ class ExhibitionTheme(models.Model):
 
     name = fields.Char('Exhibition Theme', required=True)
     sequence = fields.Integer(default=10)
+    event_ids = fields.Many2many('event.event', string='Events')
+    event_ids = fields.Many2many('event.event', 'event_theme_rel', 'theme_id', 'event_id', string="Events", ondelete='restrict')
 
 
 class Sponsor(models.Model):

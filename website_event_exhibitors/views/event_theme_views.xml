@@ -11,6 +11,7 @@
             <tree editable="bottom" string="Event Exhibition Themes">
                 <field name="sequence" widget='handle'/>
                 <field name="name"/>
+                <field name="event_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
             </tree>
         </field>
     </record>
