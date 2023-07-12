@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <!-- Webshop: PDP Terms (Archived)   -->
+    <template id="website_sale.product_custom_text" inherit_id="website_sale.product"
+              active="False" customize_show="True" name="Terms and Conditions">
+    </template>
+
+</odoo>

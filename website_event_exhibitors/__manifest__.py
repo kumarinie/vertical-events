@@ -12,7 +12,7 @@
     'website': 'https://www.tosc.nl',
     'description': "",
     'depends': [
-        'website_event_track_exhibitor',
+        'website_event_track_exhibitor', 'website_sale',
         'website_event_track', 'google_recaptcha',
         'website_jitsi', 'crm', 'sale_crm', 'brand', 'sale_brand',
     ],
@@ -26,6 +26,7 @@
         'views/event_exhibitor_templates_registration.xml',
         'views/event_exhibitor_templates_list.xml',
         "views/sale_report_template.xml",
+        'views/website_sale.xml',
         "views/invoice_report_template.xml",
         'security/ir.model.access.csv',
     ],
