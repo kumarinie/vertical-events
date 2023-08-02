@@ -57,4 +57,5 @@ class CrmLead(models.Model):
             # Update partner to Sponsor
             es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
             es.partner_id = lead.partner_id.id
+            es.partner_parent_id = lead.partner_id.parent_id.id or False
         return res

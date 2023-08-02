@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-
     <!--
         Event Sponsor
     -->
@@ -17,6 +16,21 @@
                    <button name="button_reject" type="object" states="draft" string="Reject" />
                    <field name="state" widget="statusbar" nolabel="1"/>
                 </header>
+            </xpath>
+
+            <xpath expr="//label[@for='name']" position="replace">
+                <label for="partner_company" class="oe_edit_only" string="Exhibitor"/>
+            </xpath>
+
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="partner_company"/>
+            </xpath>
+
+            <xpath expr="//div[1][@class='oe_title']" position="replace"/>
+
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="partner_parent_id"/>
+                <field name="partner_id" context="{'show_wo_company': True }" options="{'always_reload': True}"/>
             </xpath>
 
             <xpath expr="//notebook" position="replace">
@@ -107,8 +121,8 @@
             <tree multi_edit="1" default_order="id desc">
                 <field name="id" groups="base.group_no_one"/>
                 <field name="sequence" widget="handle"/>
-                <field name="partner_company" string="Exhibitor Company"/>
-                <field name="name" string="Name"/>
+                <field name="partner_parent_id" string="Exhibitor Company"/>
+                <field name="partner_id" context="{'show_wo_company': True }" options="{'always_reload': True}" string="Contact Person"/>
                 <field name="email" string="Email"/>
                 <field name="mobile" string="Mobile"/>
                 <field name="stand_number"/>

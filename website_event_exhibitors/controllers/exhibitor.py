@@ -82,6 +82,7 @@ class ExhibitorRegisterController(EventTrackController):
         for key, value in form_details.items():
             counter, attr_name = key.split('-', 1)
             field_name = attr_name.split('-')[0]
+
             if field_name not in registration_fields:
                 continue
             elif isinstance(registration_fields[field_name], (fields.Many2one, fields.Integer)):
