@@ -31,7 +31,7 @@ class Sponsor(models.Model):
     _order = "id desc"
 
     # Overridden:
-    partner_id = fields.Many2one(string='Contact Person', tracking=True)
+    partner_id = fields.Many2one(string='Customer', tracking=True)
     name = fields.Char(string='Exhibitor Name')
     email = fields.Char(string='Exhibitor Email')
     phone = fields.Char(string='Exhibitor Phone')
@@ -39,7 +39,6 @@ class Sponsor(models.Model):
     sponsor_type_id = fields.Many2one('event.sponsor.type', 'Sponsoring Type', required=False)
 
     # New
-    partner_parent_id = fields.Many2one('res.partner', string='Exhibitor Company', tracking=True, domain="[('parent_id', '=', False)]")
     visitor_id = fields.Many2one('website.visitor', string='Visitor', ondelete='set null')
     stand_number = fields.Char(string='Stand Number')
     stand_width = fields.Integer(string='Width (m)', help="Width of Stand in mtrs")
@@ -60,17 +59,6 @@ class Sponsor(models.Model):
         ('confirm', 'Confirmed'),
         ('reject', 'Rejected')], string='Status',
         default='draft', copy=False, readonly=True, tracking=True)
-
-    @api.onchange('partner_parent_id')
-    def onchange_partnerParent_id(self):
-        res = {}
-        if not self.partner_parent_id:
-            self.partner_id = False
-        else:
-            contact = self.partner_parent_id.child_ids.filtered(lambda x: x.type == 'contact')
-            self.partner_id = contact and contact[0] or self.partner_parent_id.id
-            res['domain'] = {'partner_id': [('parent_id', '=', self.partner_parent_id.id)]}
-        return res
 
 
     def _get_website_registration_allowed_fields(self):

@@ -14,10 +14,9 @@ class Partner(models.Model):
     exhibitor_status = fields.Selection([('draft', 'Draft Exhibitor'), ('confirmed', 'Exhibitor')], 'Exhibitor?', copy=False)
 
 
-    # Overridden:
-    def _get_contact_name(self, partner, name):
-        _logger.info("____ def ____ %s"%(self._context))
-        if self._context.get('show_wo_company'):
-            return "%s" % (name)
-        else:
-            return "%s, %s" % (partner.commercial_company_name or partner.sudo().parent_id.name, name)
+    # # Overridden:
+    # def _get_contact_name(self, partner, name):
+    #     if self._context.get('show_wo_company'):
+    #         return "%s" % (name)
+    #     else:
+    #         return "%s, %s" % (partner.commercial_company_name or partner.sudo().parent_id.name, name)
