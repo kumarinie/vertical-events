@@ -6,7 +6,7 @@
     'name': 'Roularta Events',
     'category': 'Marketing/Events',
     'sequence': 1005,
-    'version': '14.1.0',
+    'version': '14.0.2',
     'summary': 'Event: Improvements specific to Roularta',
     'author' : 'Deepa, The Open Source Company (TOSC)',
     'website': 'https://www.tosc.nl',
