@@ -62,6 +62,8 @@ class ExhibitorRegisterController(EventTrackController):
 
         registrations = self._process_exhibitor_data_form(event, post)
         exhibitor_sudo = self._create_exhibitor_from_registration_post(event, registrations)
+        exhibitor_sudo.message_post(body='This record has been generated from Website Event !',
+                        subtype_xmlid='mail.mt_comment')
 
         return request.render("website_event_exhibitors.registration_complete",
             self._get_registration_confirm_values(event, exhibitor_sudo))

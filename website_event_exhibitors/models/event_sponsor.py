@@ -152,7 +152,7 @@ class Sponsor(models.Model):
                 'email_from': self.email,
                 'mobile': self.mobile,
                 'phone': self.phone,
-                'name': "Event: %s | %s" % (self.event_id.name, self.partner_company),
+                'name': "Event: %s | %s" % (self.event_id.name, self.name or ''),
                 'partner_name': self.partner_company,
                 'team_id': self.event_id.team_id.id or False,
                 'event_id': self.event_id.id,
