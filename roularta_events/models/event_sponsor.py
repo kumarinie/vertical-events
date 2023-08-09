@@ -20,12 +20,14 @@ class Sponsor(models.Model):
                                         tracking=True, store=True)
 
 
-    @api.depends('partner_id')
+    @api.depends('partner_id', 'partner_company')
     def _compute_name(self):
         "Update it with Exhibitor Company"
         CompanyName = False
-        if self.partner_id:
+        if self.partner_id and self.partner_id.parent_id:
             CompanyName = self.partner_id.parent_id and self.partner_id.parent_id.name or ''
+        else:
+            CompanyName = self.partner_company or ''
 
         if CompanyName:
             self.name = CompanyName
