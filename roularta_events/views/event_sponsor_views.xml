@@ -17,8 +17,6 @@
         </field>
     </record>
 
-
-
     <!--
         Sponsor (Tree)
     -->
@@ -26,6 +24,23 @@
         <field name="name">event.sponsor.view.tree.2</field>
         <field name="model">event.sponsor</field>
         <field name="inherit_id" ref="website_event_exhibitors.event_sponsor_view_tree"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_company']" position="replace">
+                <field name="partner_parent_id"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Search)
+    -->
+    <record id="event_sponsor_view_search2" model="ir.ui.view">
+        <field name="name">event.sponsor.view.search.2</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_exhibitors.event_sponsor_view_search"/>
         <field name="arch" type="xml">
 
             <xpath expr="//field[@name='partner_company']" position="replace">

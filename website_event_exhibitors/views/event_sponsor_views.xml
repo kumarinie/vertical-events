@@ -90,8 +90,8 @@
                     <div class="row my-auto">
                         <img t-att-src="kanban_image('event.sponsor', 'image_128', record.id.raw_value)" alt="Sponsor image" class="col-4"/>
                         <div class="col-8">
-                            <h1 class="o_kanban_record_title"><field name="partner_company"/></h1>
-                            <div>Customer: <field name="name"/></div>
+                            <h1 class="o_kanban_record_title"><field name="name"/></h1>
+                            <div>Customer: <field name="partner_id"/></div>
                             <span class="o_text_overflow" t-esc="record.partner_email.value"/>
                             <span class="o_text_overflow" t-esc="record.url.value"/>
                         </div>
@@ -136,7 +136,7 @@
         <field name="priority">10</field>
         <field name="inherit_id" ref="website_event_track.event_sponsor_view_search"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="before">
+            <xpath expr="//field[@name='name']" position="replace">
                 <field name="partner_company" string="Exhibitor Company"/>
             </xpath>
             <xpath expr="//field[@name='phone']" position="replace">

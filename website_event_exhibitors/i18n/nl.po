@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-04 18:07+0000\n"
-"PO-Revision-Date: 2023-08-04 18:07+0000\n"
+"POT-Creation-Date: 2023-08-10 09:40+0000\n"
+"PO-Revision-Date: 2023-08-10 09:40+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -290,7 +290,7 @@ msgstr "Gebeurtenis die de regel activeert die deze lead heeft gemaakt."
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__event_ids
 msgid "Events"
-msgstr ""
+msgstr "Evenement"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
@@ -323,17 +323,17 @@ msgstr "Exposant Bedrijf"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__email
 msgid "Exhibitor Email"
-msgstr ""
+msgstr "E-mail"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__mobile
 msgid "Exhibitor Mobile"
-msgstr ""
+msgstr "Mobiel"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__name
 msgid "Exhibitor Name/Company"
-msgstr ""
+msgstr "Exposant Schermnaam"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__phone
@@ -440,7 +440,7 @@ msgstr "Soort menu"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
 msgid "Mobile"
-msgstr ""
+msgstr "Mobiel"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.registration_complete_form
@@ -451,6 +451,11 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_company
 msgid "Partner Company"
 msgstr "Partner Bedrijf"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_contact
+msgid "Partner Contact"
+msgstr ""
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__product_id
@@ -624,9 +629,3 @@ msgstr ""
 #: model:ir.model,name:website_event_exhibitors.model_event_stand_type
 msgid "event.stand.type"
 msgstr ""
-
-#. module: website_event_track
-#: model:ir.model.fields,field_description:website_event_track.field_event_track_visitor__partner_id
-#: model_terms:ir.ui.view,arch_db:website_event_track.event_sponsor_view_form
-msgid "Partner"
-msgstr "Klant"

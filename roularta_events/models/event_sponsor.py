@@ -24,10 +24,10 @@ class Sponsor(models.Model):
     def _compute_name(self):
         "Update it with Exhibitor Company"
         CompanyName = False
-        if self.partner_id and self.partner_id.parent_id:
-            CompanyName = self.partner_id.parent_id and self.partner_id.parent_id.name or ''
-        else:
-            CompanyName = self.partner_company or ''
+        if self.partner_company:
+            CompanyName = self.partner_company
+        elif self.partner_id:
+            CompanyName = self.partner_id.parent_id and self.partner_id.parent_id.name or self.partner_id.name
 
         if CompanyName:
             self.name = CompanyName

@@ -49,6 +49,7 @@ class Sponsor(models.Model):
     remarks = fields.Text('Remarks')
     prod_remarks = fields.Text('Products / Services')
     partner_company = fields.Char(string='Partner Company')
+    partner_contact = fields.Char(string='Partner Contact')
     lead_id = fields.Many2one('crm.lead', string='Lead')
     stand_construction = fields.Boolean('Include Stand Construction')
     theme_id = fields.Many2one('event.exhibition.theme', string='Theme of the Exhibition', ondelete='set null')
@@ -64,7 +65,7 @@ class Sponsor(models.Model):
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
                 , 'stand_width', 'stand_depth', 'remarks', 'stand_type_id', 'partner_company'
-                , 'prod_remarks', 'theme_id', 'textboard'}
+                , 'prod_remarks', 'theme_id', 'textboard', 'partner_contact'}
 
     @api.depends('stand_width', 'stand_depth')
     def _compute_surface_area(self):
@@ -144,16 +145,18 @@ class Sponsor(models.Model):
         publicUsr = self.env.ref('base.public_user').id
         if self.partner_id.id != publicUsr:
             values['partner_id'] = self.partner_id.id
+        else:
+            values.update({
+                'contact_name': self.partner_contact,
+                'partner_name': self.partner_company,})
 
         langID = self.env['res.lang']._lang_get_id(self._context.get('lang'))
 
         values.update({'type': 'lead',
-                'contact_name': self.name,
                 'email_from': self.email,
                 'mobile': self.mobile,
                 'phone': self.phone,
                 'name': "Event: %s | %s" % (self.event_id.name, self.name or ''),
-                'partner_name': self.partner_company,
                 'team_id': self.event_id.team_id.id or False,
                 'event_id': self.event_id.id,
                 'lang_id': langID,
