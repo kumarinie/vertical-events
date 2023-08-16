@@ -10,7 +10,6 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     event_id = fields.Many2one('event.event', string='Event')
-    event_attr_value_id = fields.Many2one('product.attribute.value', related='event_id.attribute_value_id', store=True)
 
 
 class SaleOrderLine(models.Model):
@@ -22,8 +21,7 @@ class SaleOrderLine(models.Model):
         # If Event/Attribute not found, set default domain
         # return "[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('id', 'in', parent.event_product_ids)]"
 
-        return "[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), " \
-               "('product_template_attribute_value_ids.product_attribute_value_id', '=', parent.event_attr_value_id)]"
+        return "[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id),]"
 
 
     # Inherited

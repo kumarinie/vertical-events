@@ -18,9 +18,6 @@ class EventEvent(models.Model):
 
     team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
 
-    attribute_value_id = fields.Many2one('product.attribute.value', string='Product Attribute', tracking=True
-                                         , domain=lambda self: self._get_domain_attr_id())
-
     brand_id = fields.Many2one("res.brand", string="Brand")
 
 
