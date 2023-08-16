@@ -54,6 +54,7 @@ class Sponsor(models.Model):
     stand_construction = fields.Boolean('Include Stand Construction')
     theme_id = fields.Many2one('event.exhibition.theme', string='Theme of the Exhibition', ondelete='set null')
     textboard = fields.Char("Textboard", size=30)
+    website_id = fields.Many2one('website', string='Website', ondelete='restrict')
 
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -61,11 +62,15 @@ class Sponsor(models.Model):
         ('reject', 'Rejected')], string='Status',
         default='draft', copy=False, readonly=True, tracking=True)
 
+    @api.onchange('event_id')
+    def _onchange_event(self):
+        self.website_id = self.event_id and self.event_id.website_id.id or False
+
 
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
                 , 'stand_width', 'stand_depth', 'remarks', 'stand_type_id', 'partner_company'
-                , 'prod_remarks', 'theme_id', 'textboard', 'partner_contact'}
+                , 'prod_remarks', 'theme_id', 'textboard', 'partner_contact', 'website_id'}
 
     @api.depends('stand_width', 'stand_depth')
     def _compute_surface_area(self):

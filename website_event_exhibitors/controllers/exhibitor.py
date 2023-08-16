@@ -113,6 +113,13 @@ class ExhibitorRegisterController(EventTrackController):
         registrations_to_create = []
         lead_vals = {}
 
+        websiteID = request.env['website'].get_current_website().id
+
+
+        _logger.info("\n ****  _process_exhibitor_data_form in EE **** \n HOST_URL >> %s \n Website DOMAIN %s \n\n" % (
+                         request.httprequest.host_url, request.env['website'].get_current_website()))
+
+
         for registration_values in registration_data:
             registration_values['event_id'] = event.id
 
@@ -129,10 +136,12 @@ class ExhibitorRegisterController(EventTrackController):
                 # update registration based on visitor
                 registration_values['visitor_id'] = visitor_sudo.id
 
-            registration_values['sponsor_type_id'] = 1  # FIXME: Remove this?
             # Interchanged: Display Company
             registration_values['partner_contact'] = registration_values['name']
             registration_values['name'] = registration_values['partner_company']
+
+            registration_values.update({'sponsor_type_id': 1,
+                                        'website_id': websiteID})
 
             registrations_to_create.append(registration_values)
 

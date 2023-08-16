@@ -46,6 +46,7 @@ class CrmLead(models.Model):
             'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
             'default_team_id': self.team_id.id,
             'default_user_id': self.env.user.id,
+            'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
         }
         return action
 
@@ -57,5 +58,4 @@ class CrmLead(models.Model):
             # Update partner to Sponsor
             es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
             es.partner_id = lead.partner_id.id
-            es.partner_parent_id = lead.partner_id.parent_id.id or False
         return res

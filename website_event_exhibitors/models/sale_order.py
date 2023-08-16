@@ -12,6 +12,7 @@ class SaleOrder(models.Model):
     event_id = fields.Many2one('event.event', string='Event')
 
 
+
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 

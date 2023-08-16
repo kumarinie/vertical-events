@@ -24,6 +24,10 @@
 
             <xpath expr="//div[1][@class='oe_title']" position="replace"/>
 
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="website_id" attrs="{'invisible': [('website_id', '=', False)]}" groups="website.group_multi_website"/>
+            </xpath>
+
             <xpath expr="//notebook" position="replace">
                 <notebook>
                     <page string="Stand Requirements" autofocus="autofocus">
