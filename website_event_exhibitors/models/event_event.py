@@ -21,12 +21,6 @@ class EventEvent(models.Model):
     brand_id = fields.Many2one("res.brand", string="Brand")
 
 
-    @api.model
-    def _get_domain_attr_id(self):
-        attr = self.env.ref('website_event_exhibitors.attribute_event', raise_if_not_found=False)
-        return [("attribute_id", "=", attr and attr.id or False)]
-
-
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
     def _compute_exhibitor_register_menu(self):
         for event in self:
