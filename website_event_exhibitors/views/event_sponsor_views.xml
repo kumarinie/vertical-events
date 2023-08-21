@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Event Sponsor
+    -->
+    <record id="event_sponsor_view_form" model="ir.ui.view">
+        <field name="name">event_sponsor_view_form.inherit</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_track_exhibitor.event_sponsor_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="/form/sheet" position="before">
+                <header>
+                   <button name="button_confirm" type="object" states="draft" string="Confirm" class="oe_highlight"/>
+                   <button name="button_reject" type="object" states="draft" string="Reject" />
+                   <field name="state" widget="statusbar" nolabel="1"/>
+                </header>
+            </xpath>
+
+            <xpath expr="//label[@for='name']" position="attributes">
+                <attribute name="string">Exhibitor</attribute>
+            </xpath>
+
+            <xpath expr="//div[1][@class='oe_title']" position="replace"/>
+
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="website_id" attrs="{'invisible': [('website_id', '=', False)]}" groups="website.group_multi_website"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="replace">
+                <notebook>
+                    <page string="Stand Requirements" autofocus="autofocus">
+                        <group>
+                            <group>
+                                <field name="stand_type_id"/>
+                                <field name="stand_width"/>
+                                <field name="stand_depth"/>
+                                <field name="stand_surface_area"/>
+                            </group>
+                            <group>
+                                <field name="lead_id" invisible="1"/>
+                                <field name="stand_number"/>
+                                <field name="stand_construction"/>
+                                <field name="textboard"/>
+                                <field name="theme_id"/>
+                            </group>
+                        </group>
+
+                        <div class="oe_title">
+                            <label for="prod_remarks" string="Exhibitor's Products &amp; Services" class="oe_edit_only"/>
+                            <field name="prod_remarks" nolabel="1"/>
+                        </div>
+                        <div string="Exhibitor's Remarks" class="oe_title">
+                            <label for="remarks" string="Exhibitor's Remarks" class="oe_edit_only"/>
+                            <field name="remarks" nolabel="1"/>
+                        </div>
+                    </page>
+                </notebook>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_leads" type="object"
+                    class="oe_stat_button" icon="fa-star">
+                    <div class="o_stat_info">
+                        <span class="o_stat_text"> Lead</span>
+                    </div>
+                </button>
+            </xpath>
+
+            <xpath expr="//field[@name='sponsor_type_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='is_exhibitor']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Kanban)
+     -->
+    <record id="event_sponsor_view_kanban_inherit" model="ir.ui.view">
+        <field name="name">event.sponsor.view.kanban.inherit.kanban</field>
+        <field name="model">event.sponsor</field>
+        <field name="inherit_id" ref="website_event_track.event_sponsor_view_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[1]" position="replace">
+                <div class="oe_kanban_global_click overflow-hidden">
+                    <div class="row my-auto">
+                        <img t-att-src="kanban_image('event.sponsor', 'image_128', record.id.raw_value)" alt="Sponsor image" class="col-4"/>
+                        <div class="col-8">
+                            <h1 class="o_kanban_record_title"><field name="name"/></h1>
+                            <div>Customer: <field name="partner_id"/></div>
+                            <span class="o_text_overflow" t-esc="record.partner_email.value"/>
+                            <span class="o_text_overflow" t-esc="record.url.value"/>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Sponsor (Tree)
+    -->
+    <record id="event_sponsor_view_tree" model="ir.ui.view">
+        <field name="name">event.sponsor.view.tree</field>
+        <field name="model">event.sponsor</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1" default_order="id desc">
+                <field name="id" groups="base.group_no_one"/>
+                <field name="sequence" widget="handle"/>
+                <field name="partner_company" string="Exhibitor Company"/>
+                <field name="partner_id" string="Customer"/>
+                <field name="email" string="Email"/>
+                <field name="mobile" string="Mobile"/>
+                <field name="stand_number"/>
+                <field name="stand_surface_area"/>
+                <field name="stand_construction" string="Construction"/>
+                <field name="textboard"/>
+                <field name="theme_id" string="Theme"/>
+                <field name="state" decoration-success="state == 'confirm'" decoration-info="state == 'draft'" widget="badge" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Search)
+    -->
+    <record id="event_sponsor_view_search" model="ir.ui.view">
+        <field name="name">event.sponsor.view.search.inherit.exhibitor</field>
+        <field name="model">event.sponsor</field>
+        <field name="priority">10</field>
+        <field name="inherit_id" ref="website_event_track.event_sponsor_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="replace">
+                <field name="partner_company" string="Exhibitor Company"/>
+            </xpath>
+            <xpath expr="//field[@name='phone']" position="replace">
+                <field name="mobile"/>
+                <field name="stand_number"/>
+                <field name="textboard"/>
+                <field name="theme_id" string="Theme"/>
+            </xpath>
+
+            <xpath expr="//filter[@name='archived']" position="after">
+                <separator/>
+                <filter string="Include Stand Construction" name="filter_incl_stand_construction" domain="[('stand_construction', '=', True)]"/>
+                <filter string="Exclude Stand Construction" name="filter_excl_stand_construction" domain="[('stand_construction', '!=', True)]"/>
+                <separator/>
+                <filter string="Textboard is set" name="filter_textboard_set" domain="[('textboard', '!=', False)]"/>
+                <filter string="Textboard is not set" name="filter_textboard_notset" domain="[('textboard', '=', False)]"/>
+            </xpath>
+
+            <xpath expr="//filter[@name='group_by_sponsor_type_id']" position="replace">
+                <filter string="Customer" name="group_by_partner_id" domain="[]" context="{'group_by': 'partner_id'}"/>
+                <filter string="Theme" name="group_by_theme_id" domain="[]" context="{'group_by': 'theme_id'}"/>
+                <filter string="Status" name="group_by_state" domain="[]" context="{'group_by': 'state'}"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!--
+        Sponsor (Search)
+        - website_event_track_exhibitor (Overridden)
+    -->
+    <record id="website_event_track_exhibitor.event_sponsor_view_search" model="ir.ui.view">
+        <field name="active" eval="False"/>
+    </record>
+
+
+    <!--
+        Sponsor (Action): Overridden
+    -->
+    <record id="website_event_track.event_sponsor_action_from_event" model="ir.actions.act_window">
+        <field name="name">Event Exhibitors</field>
+    </record>
+
+</odoo>
