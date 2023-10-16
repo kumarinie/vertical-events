@@ -13,20 +13,4 @@ class SaleOrder(models.Model):
 
 
 
-class SaleOrderLine(models.Model):
-    _inherit = 'sale.order.line'
-
-    @api.model
-    def _get_domain4event_products(self):
-        # Force Domain
-
-        return "[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), \
-                    '|', ('website_id', '=', False), ('website_id', '=', parent.website_id)]"
-
-
-    # Inherited
-    product_id = fields.Many2one('product.product', domain=_get_domain4event_products)
-
-
-
 
