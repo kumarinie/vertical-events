@@ -70,7 +70,7 @@ class Sponsor(models.Model):
     def _get_website_registration_allowed_fields(self):
         return {'name', 'phone', 'email', 'mobile', 'event_id', 'partner_id', 'stand_number'
                 , 'stand_width', 'stand_depth', 'remarks', 'stand_type_id', 'partner_company'
-                , 'prod_remarks', 'theme_id', 'textboard', 'partner_contact', 'website_id'}
+                , 'prod_remarks', 'theme_id', 'textboard', 'partner_contact', 'website_id', 'stand_construction'}
 
     @api.depends('stand_width', 'stand_depth')
     def _compute_surface_area(self):

@@ -143,11 +143,11 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
-"<span><small>Note: The minimum stand size is 4 meters wide and 3 meters deep"
-" (4x3).</small></span>"
+"<span><small>Note: The minimum stand size is 3 meters wide and 3 meters deep"
+" (3x3).</small></span>"
 msgstr ""
-"<span><small>Let op: De minimum standruimte is 4 meter breed en 3 meter diep"
-" (4x3).</small></span>"
+"<span><small>Let op: De minimum standruimte is 3 meter breed en 3 meter diep"
+" (3x3).</small></span>"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitors_register_main
@@ -577,7 +577,7 @@ msgstr "Oppervlakte van de Stand in m2"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__textboard
 msgid "Textboard"
-msgstr "Tekstbord"
+msgstr "Tekst op tekstbord"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
