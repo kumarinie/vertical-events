@@ -9,7 +9,14 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-    event_id = fields.Many2one('event.event', string='Event')
+    event_id = fields.Many2one('event.event', string='Event', ondelete='restrict', tracking=True)
+
+    @api.onchange('brand_id')
+    def _onchange_brand(self):
+        if self.brand_id:
+            self.website_id = self.brand_id.website_id.id or False
+            self.event_id = False
+
 
 
 
