@@ -132,8 +132,11 @@
             <tree multi_edit="1" default_order="id desc">
                 <field name="id" groups="base.group_no_one"/>
                 <field name="sequence" widget="handle"/>
+                <field name="create_date"/>
+                <field name="name" string="Exhibitor Name"/>
                 <field name="partner_company" string="Exhibitor Company"/>
                 <field name="partner_id" string="Customer"/>
+                <field name="partner_contact" string="Contact"/>
                 <field name="email" string="Email"/>
                 <field name="mobile" string="Mobile"/>
                 <field name="stand_number"/>
