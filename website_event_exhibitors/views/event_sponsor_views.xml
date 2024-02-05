@@ -56,6 +56,17 @@
                             <field name="remarks" nolabel="1"/>
                         </div>
                     </page>
+
+                    <page string="Contact Information">
+                        <group>
+                            <group>
+                                <field name="partner_contact"/>
+                            </group>
+                            <group>
+                                <field name="partner_company"/>
+                            </group>
+                        </group>
+                    </page>
                 </notebook>
             </xpath>
 
