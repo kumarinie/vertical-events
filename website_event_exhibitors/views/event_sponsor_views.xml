@@ -24,8 +24,13 @@
 
             <xpath expr="//div[1][@class='oe_title']" position="replace"/>
 
-            <xpath expr="//field[@name='mobile']" position="after">
+            <xpath expr="//field[@name='mobile']" position="replace">
+                <field name="mobile" widget="phone" string="Mobile" options="{'enable_sms': True}" required="1"/>
                 <field name="website_id" attrs="{'invisible': [('website_id', '=', False)]}" groups="website.group_multi_website"/>
+            </xpath>
+
+            <xpath expr="//field[@name='email']" position="attributes">
+                <attribute name="required">1</attribute>
             </xpath>
 
             <xpath expr="//notebook" position="replace">
@@ -34,8 +39,8 @@
                         <group>
                             <group>
                                 <field name="stand_type_id"/>
-                                <field name="stand_width"/>
-                                <field name="stand_depth"/>
+                                <field name="stand_width" required="1"/>
+                                <field name="stand_depth" required="1"/>
                                 <field name="stand_surface_area"/>
                             </group>
                             <group>
@@ -49,7 +54,7 @@
 
                         <div class="oe_title">
                             <label for="prod_remarks" string="Exhibitor's Products &amp; Services" class="oe_edit_only"/>
-                            <field name="prod_remarks" nolabel="1"/>
+                            <field name="prod_remarks" nolabel="1" required="1"/>
                         </div>
                         <div string="Exhibitor's Remarks" class="oe_title">
                             <label for="remarks" string="Exhibitor's Remarks" class="oe_edit_only"/>
@@ -60,10 +65,10 @@
                     <page string="Contact Information">
                         <group>
                             <group>
-                                <field name="partner_contact"/>
+                                <field name="partner_contact" required="1"/>
                             </group>
                             <group>
-                                <field name="partner_company"/>
+                                <field name="partner_company" required="1"/>
                             </group>
                         </group>
                     </page>
