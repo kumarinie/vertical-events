@@ -16,7 +16,7 @@ class CrmLead(models.Model):
 
 
     def _prepare_customer_values(self, name, is_company=False, parent_id=False):
-        """ Include Exhibtor Status."""
+        """ Include Exhibitor Status."""
         values = super(CrmLead, self)._prepare_customer_values(
             name, is_company=is_company, parent_id=parent_id
         )
@@ -48,6 +48,10 @@ class CrmLead(models.Model):
             'default_user_id': self.env.user.id,
             'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
         }
+        # Update: SO type as "Event SOT"
+        if self.event_id:
+            ref = self.env.ref
+            action['context'].update({'default_type_id': ref('website_event_exhibitors.event_sale_type').id})
         return action
 
     def handle_partner_assignment(self, force_partner_id=False, create_missing=True):
