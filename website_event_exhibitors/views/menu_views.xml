@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--
+            Menu: Event Sales (Root)
+        -->
+
+        <menuitem id="event_sale_menu_root"
+            name="Event Sales"
+            web_icon="website_event_exhibitors,static/description/sale_icon.png"
+            active="True"
+            sequence="6"/>
+
+        <!--
+                Orders
+        -->
+
+        <menuitem id="menu_event_order" name="Orders" parent="event_sale_menu_root"
+                  groups="event.group_event_user" sequence="1"/>
+
+            <menuitem id="menu_sale_quotations4" name="Quotations"
+                      parent="menu_event_order" action="action_quotations_event" sequence="1"/>
+
+            <menuitem id="menu_sale_order4" name="Orders"
+                      parent="menu_event_order" action="action_orders_event" sequence="2"/>
+
+            <menuitem id="menu_partners4"  name="Customers"
+                      parent="menu_event_order" action="base.action_partner_form" sequence="3"/>
+
+    </data>
+</openerp>
