@@ -28,5 +28,49 @@
             <menuitem id="menu_partners4"  name="Customers"
                       parent="menu_event_order" action="base.action_partner_form" sequence="3"/>
 
+
+        <!--
+                 Product
+        -->
+        <menuitem id="menu_event_product" name="Products" parent="event_sale_menu_root"
+                groups="event.group_event_user"  sequence="3"/>
+
+            <menuitem id="menu_product_template_action1" name="Products"
+                  parent="menu_event_product" action="product_template_action_event"  sequence="1"/>
+
+            <menuitem id="menu_product_normal_action_sell1" name="Product Variants"
+                  parent="menu_event_product" action="product_normal_action_sell_event"  groups="product.group_product_variant" sequence="2"/>
+
+            <menuitem id="menu_product_pricelist_action3" name="Pricelists"
+                  parent="menu_event_product" action="product.product_pricelist_action2"  groups="product.group_product_pricelist" sequence="3"/>
+
+
+        <!--
+                 Reporting
+        -->
+        <menuitem id="menu_event_report" name="Reporting" parent="event_sale_menu_root"
+                groups="event.group_event_user"  sequence="4"/>
+
+            <menuitem id="menu_action_sale_order_report_all1" name="Order Analysis"
+                  parent="menu_event_report" action="action_order_report_all"  sequence="1"/>
+
+        <!--
+                Configuration
+        -->
+        <menuitem id="menu_event_config" name="Configuration" parent="event_sale_menu_root"
+                groups="event.group_event_manager"  sequence="10"/>
+
+            <menuitem id="sales_team_config4"  name="Sales Teams"
+                      parent="menu_event_config" action="sales_team.sales_team_config_action" sequence="1"/>
+
+            <menuitem id="menu_products_subconfig4" name="Products"
+                  parent="menu_event_config" sequence="3"/>
+
+                <menuitem id="menu_attribute_action4" name="Product Categories"
+                      parent="menu_products_subconfig4" action="product.product_category_action_form" sequence="1"/>
+
+                <menuitem id="menu_product_category_action_form4" name="Attributes"
+                      parent="menu_products_subconfig4" action="product.attribute_action" sequence="2"/>
+
     </data>
 </openerp>
