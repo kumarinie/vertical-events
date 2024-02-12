@@ -31,7 +31,7 @@ class Sponsor(models.Model):
     _order = "id desc"
 
     # Overridden:
-    partner_id = fields.Many2one(string='Customer', tracking=True)
+    partner_id = fields.Many2one(string='Customer', tracking=True, required=False)
     name = fields.Char(string='Exhibitor Name')
     email = fields.Char(string='Exhibitor Email')
     phone = fields.Char(string='Exhibitor Phone')
@@ -148,7 +148,7 @@ class Sponsor(models.Model):
         LeadObj = self.env['crm.lead']
         values = LeadObj.default_get(['type', 'stage_id'])
         publicUsr = self.env.ref('base.public_user').id
-        if self.partner_id.id != publicUsr:
+        if self.partner_id and self.partner_id.id != publicUsr:
             values['partner_id'] = self.partner_id.id
         else:
             values.update({
