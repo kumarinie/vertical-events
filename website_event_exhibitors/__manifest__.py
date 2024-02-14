@@ -22,7 +22,7 @@
         'data/sale_order_type.xml',
         "reports/sale_report_view.xml",
 
-        'views/res_brand_views.xml',
+        # 'views/res_brand_views.xml',
         'views/event_stand_views.xml',
         'views/event_theme_views.xml',
         'views/event_event_views.xml',

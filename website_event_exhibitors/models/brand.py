@@ -7,11 +7,11 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-class Brand(models.Model):
-    _inherit = ["res.brand"]
-
-
-    website_id = fields.Many2one('website', string='Website', ondelete='restrict')
+# class Brand(models.Model):
+#     _inherit = ["res.brand"]
+#
+#
+#     website_id = fields.Many2one('website', string='Website', ondelete='restrict')
 
 
 
