@@ -16,7 +16,7 @@ class EventEvent(models.Model):
         'website.event.menu', 'event_id', string='Exhibitors Register Menus',
         domain=[('menu_type', '=', 'exhibitor_register')])
 
-    team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
+    # team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
 
     brand_id = fields.Many2one("res.brand", string="Brand")
 
@@ -56,7 +56,7 @@ class EventEvent(models.Model):
         self.ensure_one()
         return [(_('Register as Exhibitor'), '/event/%s/exhibitors_register' % slug(self), False, 60, 'exhibitor_register')]
 
-    @api.onchange("team_id")
-    def _onchange_team_id(self):
-        if self.team_id.brand_id:
-            self.brand_id = self.team_id.brand_id
+    # @api.onchange("team_id")
+    # def _onchange_team_id(self):
+    #     if self.team_id.brand_id:
+    #         self.brand_id = self.team_id.brand_id

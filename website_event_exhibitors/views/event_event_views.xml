@@ -34,7 +34,7 @@
         <field name="priority" eval="3"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='event_type_id']" position="after">
-                <field name="team_id"/>
+<!--                <field name="team_id"/>-->
                 <field name="brand_id"/>
             </xpath>
         </field>
