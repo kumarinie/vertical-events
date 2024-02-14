@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="sale_brand.view_order_form_brand" />
         <field name="arch" type="xml">
             <xpath expr="//field[@name='brand_id']" position="after">
-                <field name="event_id" domain="[('website_id', '=', website_id)]"/>
+                <field name="event_id" domain="[('brand_id', '=', brand_id)]"/>
             </xpath>
         </field>
     </record>
