@@ -30,7 +30,11 @@ class CrmLead(models.Model):
 
     # Overridden: sale_crm
     def action_new_quotation(self):
-        action = self.env["ir.actions.actions"]._for_xml_id("sale_crm.sale_action_quotations_new")
+        if self.event_id:
+            action = self.env["ir.actions.actions"]._for_xml_id("website_event_exhibitors.sale_action_quotations_new")
+        else:
+            action = self.env["ir.actions.actions"]._for_xml_id("sale_crm.sale_action_quotations_new")
+
         action['context'] = {
             'search_default_opportunity_id': self.id,
             'default_opportunity_id': self.id,
@@ -44,7 +48,7 @@ class CrmLead(models.Model):
             'default_tag_ids': [(6, 0, self.tag_ids.ids)],
             'default_event_id': self.event_id.id,
             'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
-            'default_team_id': self.team_id.id,
+            # 'default_team_id': self.team_id.id,
             'default_user_id': self.env.user.id,
             'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
         }
@@ -63,3 +67,63 @@ class CrmLead(models.Model):
             es = sponsor.search([('lead_id','=', lead.id)], limit=1, order='id desc')
             es.partner_id = lead.partner_id.id
         return res
+
+    # Overridden (sale_crm)
+    def action_view_sale_quotation(self):
+        if self.event_id:
+            action = self.env["ir.actions.actions"]._for_xml_id("website_event_exhibitors.action_quotations_event")
+        else:
+            action = self.env["ir.actions.actions"]._for_xml_id("sale.action_quotations_with_onboarding")
+        action['context'] = {
+            'search_default_draft': 1,
+            'search_default_partner_id': self.partner_id.id,
+            'default_partner_id': self.partner_id.id,
+            'default_opportunity_id': self.id,
+            'default_event_id': self.event_id.id,
+            'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
+            'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
+        }
+        # Update: SO type as "Event SOT"
+        if self.event_id:
+            ref = self.env.ref
+            action['context'].update({'default_type_id': ref('website_event_exhibitors.event_sale_type').id})
+
+        action['domain'] = [('opportunity_id', '=', self.id), ('state', 'in', ['draft', 'sent'])]
+        quotations = self.mapped('order_ids').filtered(lambda l: l.state in ('draft', 'sent'))
+        if len(quotations) == 1:
+            if self.event_id:
+                action['views'] = [(self.env.ref('website_event_exhibitors.view_order_form').id, 'form')]
+            else:
+                action['views'] = [(self.env.ref('sale.view_order_form').id, 'form')]
+            action['res_id'] = quotations.id
+        return action
+
+    # Overridden (sale_crm)
+    def action_view_sale_order(self):
+        if self.event_id:
+            action = self.env["ir.actions.actions"]._for_xml_id("website_event_exhibitors.action_orders_event")
+        else:
+            action = self.env["ir.actions.actions"]._for_xml_id("sale.action_orders")
+        action['context'] = {
+            'search_default_partner_id': self.partner_id.id,
+            'default_partner_id': self.partner_id.id,
+            'default_opportunity_id': self.id,
+            'default_event_id': self.event_id.id,
+            'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
+            'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
+        }
+
+        # Update: SO type as "Event SOT"
+        if self.event_id:
+            ref = self.env.ref
+            action['context'].update({'default_type_id': ref('website_event_exhibitors.event_sale_type').id})
+
+        action['domain'] = [('opportunity_id', '=', self.id), ('state', 'not in', ('draft', 'sent', 'cancel'))]
+        orders = self.mapped('order_ids').filtered(lambda l: l.state not in ('draft', 'sent', 'cancel'))
+        if len(orders) == 1:
+            if self.event_id:
+                action['views'] = [(self.env.ref('website_event_exhibitors.view_order_form').id, 'form')]
+            else:
+                action['views'] = [(self.env.ref('sale.view_order_form').id, 'form')]
+            action['res_id'] = orders.id
+        return action
