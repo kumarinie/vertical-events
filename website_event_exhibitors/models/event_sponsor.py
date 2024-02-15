@@ -97,7 +97,7 @@ class Sponsor(models.Model):
                 lead.handle_partner_assignment(create_missing=True)
                 partner = lead.partner_id
             lead.convert_opportunity(partner.id)
-            lead.team_id = lead.event_id and lead.event_id.team_id.id or False
+            # lead.team_id = lead.event_id and lead.event_id.team_id.id or False
             lead.user_id = self.env.user
 
             # Update partner status
@@ -162,7 +162,7 @@ class Sponsor(models.Model):
                 'mobile': self.mobile,
                 'phone': self.phone,
                 'name': "Event: %s | %s" % (self.event_id.name, self.name or ''),
-                'team_id': self.event_id.team_id.id or False,
+                # 'team_id': self.event_id.team_id.id or False,
                 'event_id': self.event_id.id,
                 'lang_id': langID,
                 'brand_id': self.event_id.brand_id.id or False,
