@@ -33,3 +33,9 @@ class Sponsor(models.Model):
             self.name = CompanyName
         else:
             self._synchronize_with_partner('name')
+
+        # Update: Partner Name (text) & Partner Company (text)
+        publicUsr = self.env.ref('base.public_user').id
+        if self.partner_id and self.partner_id.id != publicUsr:
+            self.partner_contact = self.partner_id.name
+            self.partner_company = self.partner_id.parent_id and self.partner_id.parent_id.name or ''
