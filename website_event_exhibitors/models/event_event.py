@@ -16,7 +16,7 @@ class EventEvent(models.Model):
         'website.event.menu', 'event_id', string='Exhibitors Register Menus',
         domain=[('menu_type', '=', 'exhibitor_register')])
 
-    # team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
+#    team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
 
     brand_id = fields.Many2one("res.brand", string="Brand")
 
