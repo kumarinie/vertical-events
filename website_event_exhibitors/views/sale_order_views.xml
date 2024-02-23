@@ -31,6 +31,22 @@
 
 
     <!--
+        Sale Order (website_sale)
+    -->
+    <record id="view_order_form2" model="ir.ui.view">
+        <field name="name">sale_order.form.inherited.website</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="website_sale.sale_order_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='website_id']" position="attributes">
+                <attribute name="force_save">1</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <!--
         Sale Order (brand)
     -->
     <record id="view_order_form_brand_inherit" model="ir.ui.view">
