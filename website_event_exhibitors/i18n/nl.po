@@ -41,6 +41,18 @@ msgid ""
 "<option value=\"\">Excluded</option>\n"
 "                                    <option value=\"True\">Included</option>"
 msgstr ""
+"<option value=\"\">Exclusief</option>\n"
+"                                    <option value=\"True\">Inclusief</option>"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
+msgid "Included"
+msgstr "Inclusief"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
+msgid "Excluded"
+msgstr "Exclusief"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitors_register_main
@@ -97,7 +109,7 @@ msgstr "<span class=\"s_website_form_label_content\">Standbouw</span>"
 msgid ""
 "<span class=\"s_website_form_label_content\">Stand Depth <small>(mts)</small></span>\n"
 "                                 <span class=\"s_website_form_mark\"> *</span>"
-msgstr ""
+msgstr "
 "<span class=“s_website_form_label_content”>Stand diepte <small>(meter)</small></span>\n"
 "                                 <span class=“s_website_form_mark”> *</span>"
 
