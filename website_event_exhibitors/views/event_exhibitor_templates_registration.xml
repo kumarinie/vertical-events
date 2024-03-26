@@ -135,8 +135,8 @@
                              </label>
                              <div class="col-sm">
                                  <select class="form-control" t-attf-name="#{counter}-stand_construction" id="yn12">
-                                    <option value="">Excluded</option>
-                                    <option value="True">Included</option>
+                                    <option value="">Exclusief</option>
+                                    <option value="True">Inclusief</option>
                                  </select>
                              </div>
                          </div>
