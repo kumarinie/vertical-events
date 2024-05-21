@@ -50,7 +50,6 @@
                                  <span class="s_website_form_mark"> *</span>
                              </label>
                              <div class="col-sm">
-<!--                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-email" t-att-value="email" required="1" id="yn3"/>-->
                                  <input type="email" t-attf-name="#{counter}-email" class="form-control s_website_form_input" t-att-value="email" required="1" id="yn3"/>
                              </div>
                          </div>
