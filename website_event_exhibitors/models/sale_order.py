@@ -35,6 +35,7 @@ class SaleOrder(models.Model):
 
         if self.event_id:
             self.website_id = self.event_id.website_id.id or False
+            self.analytic_account_id = self.event_id.analytic_account_id.id or False
 
 
 

@@ -16,10 +16,11 @@ class EventEvent(models.Model):
         'website.event.menu', 'event_id', string='Exhibitors Register Menus',
         domain=[('menu_type', '=', 'exhibitor_register')])
 
-    # team_id = fields.Many2one('crm.team', string='Sales Team', tracking=True)
-
     brand_id = fields.Many2one("res.brand", string="Brand")
 
+    analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic Account',
+                                          help='Related Analytic Account', ondelete='restrict',
+                                          check_company=True)
 
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
     def _compute_exhibitor_register_menu(self):
@@ -55,8 +56,3 @@ class EventEvent(models.Model):
     def _get_exhibitor_register_menu_entries(self):
         self.ensure_one()
         return [(_('Register as Exhibitor'), '/event/%s/exhibitors_register' % slug(self), False, 60, 'exhibitor_register')]
-
-    # @api.onchange("team_id")
-    # def _onchange_team_id(self):
-    #     if self.team_id.brand_id:
-    #         self.brand_id = self.team_id.brand_id
