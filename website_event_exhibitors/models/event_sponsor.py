@@ -162,7 +162,6 @@ class Sponsor(models.Model):
                 'mobile': self.mobile,
                 'phone': self.phone,
                 'name': "Event: %s | %s" % (self.event_id.name, self.name or ''),
-                # 'team_id': self.event_id.team_id.id or False,
                 'event_id': self.event_id.id,
                 'lang_id': langID,
                 'brand_id': self.event_id.brand_id.id or False,

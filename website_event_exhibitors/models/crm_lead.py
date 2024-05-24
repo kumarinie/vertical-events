@@ -48,7 +48,6 @@ class CrmLead(models.Model):
             'default_tag_ids': [(6, 0, self.tag_ids.ids)],
             'default_event_id': self.event_id.id,
             'default_brand_id': self.event_id.brand_id and self.event_id.brand_id.id or False,
-            # 'default_team_id': self.team_id.id,
             'default_user_id': self.env.user.id,
             'default_website_id': self.event_id.website_id and self.event_id.website_id.id or False,
         }
