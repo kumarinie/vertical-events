@@ -50,7 +50,7 @@
                                  <span class="s_website_form_mark"> *</span>
                              </label>
                              <div class="col-sm">
-                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-email" t-att-value="email" required="1" id="yn3"/>
+                                 <input type="email" t-attf-name="#{counter}-email" class="form-control s_website_form_input" t-att-value="email" required="1" id="yn3"/>
                              </div>
                          </div>
                      </div>
@@ -62,14 +62,15 @@
                                  <span class="s_website_form_mark"> *</span>
                              </label>
                              <div class="col-sm">
-                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-mobile" t-att-value="mobile" required="1" id="yn4"/>
+                                 <input type="tel" t-attf-name="#{counter}-mobile" class="form-control s_website_form_input" pattern="^[0-9]{10}$" t-att-value="mobile" required="1" id="yn4"/>
                              </div>
 
                              <label class="col-form-label col-2 col-sm-auto s_website_form_label " style="width: 200px" for="yn5">
                                  <span class="s_website_form_label_content">Phone Number</span>
                              </label>
                              <div class="col-sm">
-                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-phone" t-att-value="phone" id="yn5"/>
+                                 <input type="tel" t-attf-name="#{counter}-phone" class="form-control s_website_form_input" pattern="[+]{1}[0-9]{11}$"
+                                        placeholder="+31XXXXXXXXX" t-att-value="phone" required="1" id="yn5"/>
                              </div>
                          </div>
                      </div>
@@ -81,7 +82,7 @@
                                  <span class="s_website_form_mark"> *</span>
                              </label>
                              <div class="col-sm">
-                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-stand_width" t-att-value="stand_width" required="1" id="yn4"/>
+                                 <input type="integer" class="form-control s_website_form_input" t-attf-name="#{counter}-stand_width" pattern="^[0-9]+$" t-att-value="stand_width" required="1" id="yn4"/>
                              </div>
 
                              <label class="col-form-label col-2 col-sm-auto s_website_form_label " style="width: 200px" for="yn5">
@@ -89,7 +90,7 @@
                                  <span class="s_website_form_mark"> *</span>
                              </label>
                              <div class="col-sm">
-                                 <input type="text" class="form-control s_website_form_input" t-attf-name="#{counter}-stand_depth" t-att-value="stand_depth" id="yn5"/>
+                                 <input type="integer" class="form-control s_website_form_input" t-attf-name="#{counter}-stand_depth" pattern="^[0-9]+$" t-att-value="stand_depth" id="yn5"/>
                              </div>
                          </div>
                          <div class="row p-2 s_col_no_resize s_col_no_bgcolor">
