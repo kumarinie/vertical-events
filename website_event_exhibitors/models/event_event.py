@@ -21,6 +21,7 @@ class EventEvent(models.Model):
     analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic Account',
                                           help='Related Analytic Account', ondelete='restrict',
                                           check_company=True)
+    default_product_ids = fields.Many2many('product.product', string="Default Products")
 
     @api.depends('event_type_id', 'website_menu', 'exhibitor_register_menu')
     def _compute_exhibitor_register_menu(self):
