@@ -37,6 +37,11 @@
                 <field name="brand_id" required="1"/>
                 <field name="analytic_account_id" groups="analytic.group_analytic_accounting" required="1"/>
             </xpath>
+            <xpath expr="//page[@name='event_notes']" position="before">
+                <page string="Default Product" name="default_product">
+                    <field name="default_product_ids" domain="[('website_id', '=', website_id)]"/>
+                </page>
+            </xpath>
         </field>
     </record>
 </odoo>

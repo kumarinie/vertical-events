@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
 
         # Event Orders:
-        if (self.type_id.id != Event_SOT):
+        if (self.type_id and self.type_id.id != Event_SOT):
             return
 
         if self.brand_id:
@@ -30,14 +30,25 @@ class SaleOrder(models.Model):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
 
         # Event Orders:
-        if (self.type_id.id != Event_SOT):
+        if (self.type_id and self.type_id.id != Event_SOT):
             return True
 
         if self.event_id:
             self.website_id = self.event_id.website_id.id or False
             self.analytic_account_id = self.event_id.analytic_account_id.id or False
 
-
-
-
+            line_ids = []
+            for product in self.event_id.default_product_ids:
+                line_ids += [
+                    (
+                        0,
+                        0,
+                        {
+                            "product_id": product.id,
+                            "product_uom_qty":1,
+                        },
+                    )]
+            self.order_line = line_ids
+            for line in self.order_line:
+                line.product_id_change()
 
