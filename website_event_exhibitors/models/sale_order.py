@@ -57,7 +57,7 @@ class SaleOrder(models.Model):
     def create(self, vals):
         website_id = self.env.context.get('website_id', False)
         allowed_company_ids = self.env.context.get('allowed_company_ids', False)
-        dt_now = fields.Datetime.to_string(datetime.today())
+        # dt_now = fields.Datetime.to_string(datetime.today())
         event = self.env['event.event'].search([
             # ('date_begin', '<=', dt_now),
             # ('date_end', '>=', dt_now),
