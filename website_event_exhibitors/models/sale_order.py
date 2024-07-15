@@ -59,8 +59,8 @@ class SaleOrder(models.Model):
         allowed_company_ids = self.env.context.get('allowed_company_ids', False)
         dt_now = fields.Datetime.to_string(datetime.today())
         event = self.env['event.event'].search([
-            ('date_begin', '<=', dt_now),
-            ('date_end', '>=', dt_now),
+            # ('date_begin', '<=', dt_now),
+            # ('date_end', '>=', dt_now),
             ('active', '=', True),
             ('website_id', '=', website_id),
             ('company_id', 'in', allowed_company_ids),
