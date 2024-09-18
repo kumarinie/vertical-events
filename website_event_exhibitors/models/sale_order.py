@@ -32,7 +32,7 @@ class SaleOrder(models.Model):
 
         # Event Orders:
         if (self.type_id and self.type_id.id != Event_SOT):
-            return True
+            return
 
         if self.event_id:
             self.website_id = self.event_id.website_id.id or False
