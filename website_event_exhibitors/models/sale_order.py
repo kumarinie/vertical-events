@@ -55,6 +55,12 @@ class SaleOrder(models.Model):
 
     @api.model
     def create(self, vals):
+        Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+
+        SOT = vals.get('type_id', '') or self.context.get('type_id', '')
+        if SOT != Event_SOT:
+            return super(SaleOrder, self).create(vals)
+
         website_id = self.env.context.get('website_id', False)
         allowed_company_ids = self.env.context.get('allowed_company_ids', False)
         # dt_now = fields.Datetime.to_string(datetime.today())
@@ -67,7 +73,7 @@ class SaleOrder(models.Model):
             ('stage_id.name', 'not in', ('Ended', 'Cancelled'))
         ], limit=1)
         if event:
-            vals['type_id'] = self.env.ref('website_event_exhibitors.event_sale_type').id
+            # vals['type_id'] = self.env.ref('website_event_exhibitors.event_sale_type').id # FIXME: SOT not to be enforced here
             vals['event_id'] = event.id
             vals['brand_id'] = event.brand_id and event.brand_id.id or False
         return super(SaleOrder, self).create(vals)
