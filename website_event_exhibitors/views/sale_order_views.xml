@@ -26,13 +26,6 @@
                 <attribute name="domain">[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id),
                     '|', ('website_id', '=', False), ('website_id', '=', parent.website_id)]</attribute>
             </xpath>
-
-<!--            <xpath expr="//field[@name='partner_invoice_id']" position="after">-->
-<!--                <field name="customer_contact" required="False" context="{'default_parent_id': partner_id, 'show_email': 1, 'res_partner_search_mode': 'customer'}"-->
-<!--                       domain="[('is_company', '=', False),('parent_id', '=', partner_id),('type', '=', 'contact')]"-->
-<!--                       options='{"always_reload": True, "no_create_edit": True}'-->
-<!--                       attrs="{'readonly':[('state','in', ['cancel','done'])]}"/>-->
-<!--            </xpath> FIXME: temporarily commented-->
         </field>
     </record>
 
