@@ -31,8 +31,6 @@ class Website(models.Model):
 
         # Active Event on Website
         event = self.env['event.event'].sudo().search([
-            ('date_begin', '<=', dt_now),
-            ('date_end', '>=', dt_now),
             ('active', '=', True),
             ('website_id', '=', website_id),
             # ('company_id', 'in', allowed_company_ids), # FIXME: In bo-test, check if needed
