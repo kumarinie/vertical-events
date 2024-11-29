@@ -29,6 +29,16 @@
             <xpath expr="//field[@name='operating_unit_id']" position="attributes">
                 <attribute name="domain">[]</attribute>
             </xpath>
+
+            <xpath expr="//button[@name='action_confirm'][1]" position="after">
+                <button name="action_submit" string="Submit for Approval" type="object" states="draft" group="event.group_event_user"/>
+                <button name="action_approve1" string="Approve Quotation"
+                            states="submitted" type="object" class="oe_highlight"
+							groups="website_event_exhibitors.group_event_manager_ver"/>
+                <button name="action_refuse" string="Reject"
+                            states="submitted" type="object" class="oe_highlight"
+							groups="website_event_exhibitors.group_event_manager_ver"/>
+            </xpath>
         </field>
     </record>
 

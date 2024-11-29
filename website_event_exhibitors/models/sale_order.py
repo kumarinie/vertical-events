@@ -2,6 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 from odoo import fields, models, api, _
+from lxml import etree
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -10,6 +11,10 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     event_id = fields.Many2one('event.event', string='Event', ondelete='restrict', tracking=True)
+    state = fields.Selection(selection_add=[
+        ('submitted', "Submit for Approval"),
+        ('approved1', "Approved by Sales Mgr"),
+    ])
 
     @api.onchange('brand_id')
     def _onchange_brand(self):
@@ -77,4 +82,78 @@ class SaleOrder(models.Model):
     #         vals['event_id'] = event.id
     #         vals['brand_id'] = event.brand_id and event.brand_id.id or False
     #     return super(SaleOrder, self).create(vals)
+    
+    
+    def action_submit(self):
+        orders = self.filtered(lambda s: s.state in ['draft'])
+        for o in orders:
+            if not o.order_line:
+                raise UserError(_('You cannot submit a quotation/sales order which has no line.'))
+        self.write({'state':'submitted'})
+        
+    def action_approve1(self):
+        orders = self.filtered(lambda s: s.state in ['submitted'])
+        orders.write({'state':'approved1'})
+    
+    def action_refuse(self):
+        orders = self.filtered(lambda s: s.state in ['submitted', 'sale', 'sent', 'approved1'])
+        orders.write({'state': 'draft'})
+        return True
 
+    @api.model
+    def fields_view_get(
+            self, view_id=None, view_type="form", toolbar=False, submenu=False
+    ):
+        ret_val = super().fields_view_get(
+            view_id=view_id, view_type=view_type, toolbar=toolbar, submenu=submenu
+        )
+        if view_type == "form":
+            doc = etree.XML(ret_val["arch"])
+            order_type = self.env.context.get('default_type_id', False)
+            Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+            if not order_type or (order_type and Event_SOT != order_type):
+                return ret_val
+
+            if not self.env.user.has_group('event.group_event_manager'):
+                for node in doc.xpath("//button[@name='action_confirm'][1]"):
+                    node.set('invisible', '1')
+                    self.setup_modifiers(
+                        node,
+                        # field=field,
+                        context=self._context,
+                        current_node_path="form",
+                    )
+                for node in doc.xpath("//button[@name='action_confirm'][2]"):
+                    node.set('invisible', '1')
+                    self.setup_modifiers(
+                        node,
+                        # field=field,
+                        context=self._context,
+                        current_node_path="form",
+                    )
+            else:
+                for node in doc.xpath("//button[@name='action_confirm'][1]"):
+                    node.set(
+                    "attrs",
+                    "{'invisible': "
+                    "[('state', '!=', 'approved1')]}"
+                    )
+                    self.setup_modifiers(
+                        node,
+                        # field=field,
+                        context=self._context,
+                        current_node_path="form",
+                    )
+
+                for node in doc.xpath("//button[@name='action_confirm'][2]"):
+                    node.set('invisible', '1')
+                    self.setup_modifiers(
+                        node,
+                        # field=field,
+                        context=self._context,
+                        current_node_path="form",
+                    )
+
+            ret_val["arch"] = etree.tostring(doc, encoding="unicode")
+
+        return ret_val
