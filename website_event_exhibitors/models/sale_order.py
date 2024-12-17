@@ -193,12 +193,19 @@ class SaleOrder(models.Model):
 class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
-    @api.depends('product_id')
+    @api.depends('product_id', 'price_subtotal')
     def _compute_event_price_edit(self):
-        if self.order_id.type_id.id == self.env.ref('website_event_exhibitors.event_sale_type').id:
-            self.event_price_edit = False
-            if self.product_template_id and self.product_template_id.price_edit:
-                self.event_price_edit = True
+        EOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+        for line in self:
+            event_price_edit = False
+            if line.order_id.type_id.id == EOT:
+                line.event_price_edit = False
+                if line.product_template_id and self.product_template_id.price_edit:
+                    event_price_edit = True
+            line.update({
+                'event_price_edit': event_price_edit,
+                'price_subtotal_disc_amt':line.price_subtotal
+            })
 
     price_subtotal_disc_amt = fields.Monetary(string='Subtotal after discount')
     event_price_edit = fields.Boolean(compute='_compute_event_price_edit', string='Event Price Editable')
@@ -207,13 +214,9 @@ class SaleOrderLine(models.Model):
     def _onchange_subtotal_discount(self):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
         if self.order_id.type_id.id == Event_SOT and self.price_unit:
-            differnce_amt = self.price_subtotal - self.price_subtotal_disc_amt
-            self.discount = (differnce_amt / self.price_subtotal) * 100
-
-    @api.onchange('product_uom_qty', 'price_unit')
-    def reset_discount_price_subtotal_disc_amt(self):
-        Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
-        if self.order_id.type_id.id == Event_SOT:
-            self.discount = 0
-            self.price_subtotal_disc_amt = 0
+            taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, self.product_uom_qty,
+                                            product=self.product_id, partner=self.order_id.partner_shipping_id)
+            price_subtotal = taxes['total_excluded']
+            differnce_amt = price_subtotal - self.price_subtotal_disc_amt
+            self.discount = (differnce_amt / price_subtotal) * 100
 
