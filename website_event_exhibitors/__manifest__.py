@@ -6,7 +6,7 @@
     'name': 'Event Exhibitors Registration',
     'category': 'Marketing/Events',
     'sequence': 1005,
-    'version': '14.0.18.9',
+    'version': '14.0.19.1',
     'summary': 'Event: upgrade sponsors to exhibitors with registration',
     'author' : 'Deepa, The Open Source Company (TOSC)',
     'website': 'https://www.tosc.nl',
@@ -18,6 +18,8 @@
         'sale_order_type', "analytic"
     ],
     'data': [
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'data/sale_order_type.xml',
         "reports/sale_report_view.xml",
         'views/event_stand_views.xml',
@@ -32,8 +34,7 @@
         'views/website_sale.xml',
         "views/invoice_report_template.xml",
 
-        'views/menu_views.xml',
-        'security/ir.model.access.csv',
+        'views/menu_views.xml',        
     ],
     'demo': [
     ],
