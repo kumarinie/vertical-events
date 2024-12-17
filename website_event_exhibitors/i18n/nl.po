@@ -807,3 +807,8 @@ msgstr ""
 #: model:ir.model,name:website_event_exhibitors.model_event_stand_type
 msgid "event.stand.type"
 msgstr ""
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__price_subtotal_disc_amt
+msgid "Subtotal after discount"
+msgstr "Subtotaal na korting"

@@ -114,19 +114,7 @@ class SaleOrder(models.Model):
             if not order_type or (order_type and Event_SOT != order_type):
 
                 doc_tree = etree.XML(ret_val['fields']['order_line']['views']['tree']['arch'])
-                for node in doc_tree.xpath("//field[@name='discount']"):
-                    node.set(
-                        "attrs",
-                        "{}"
-                    )
-                    self.setup_modifiers(
-                        node,
-                        # field=field_dis,
-                        context=self._context,
-                        current_node_path="tree",
-                    )
-
-                for node in doc_tree.xpath("//field[@name='price_subtotal_disc_amt']"):
+                for node in doc_tree.xpath("//field[@name='price_unit']"):
                     node.set('invisible', '1')
                     node.set(
                         "attrs",
@@ -142,19 +130,7 @@ class SaleOrder(models.Model):
                 ret_val['fields']['order_line']['views']['tree']['arch'] = etree.tostring(doc_tree)
 
                 doc_form = etree.XML(ret_val['fields']['order_line']['views']['form']['arch'])
-                for node in doc_form.xpath("//field[@name='discount']"):
-                    node.set(
-                        "attrs",
-                        "{}"
-                    )
-                    self.setup_modifiers(
-                        node,
-                        # field=field_dis,
-                        context=self._context,
-                        current_node_path="form",
-                    )
-
-                for node in doc_form.xpath("//field[@name='price_subtotal_disc_amt']"):
+                for node in doc_form.xpath("//field[@name='price_unit']"):
                     node.set('invisible', '1')
                     node.set(
                         "attrs",
@@ -224,19 +200,15 @@ class SaleOrderLine(models.Model):
             if self.product_template_id and self.product_template_id.price_edit:
                 self.event_price_edit = True
 
-    price_subtotal_disc_amt = fields.Monetary(string='Subtotal Disc Amount')
+    price_subtotal_disc_amt = fields.Monetary(string='Subtotal after discount')
     event_price_edit = fields.Boolean(compute='_compute_event_price_edit', string='Event Price Editable')
 
-
-    @api.onchange('price_subtotal_disc_amt', 'discount')
+    @api.onchange('price_subtotal_disc_amt')
     def _onchange_subtotal_discount(self):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
         if self.order_id.type_id.id == Event_SOT and self.price_unit:
-            if self.discount and not self.price_subtotal_disc_amt:
-                self.price_subtotal_disc_amt = self.price_subtotal
-            elif not self.discount and self.price_subtotal_disc_amt:
-                differnce_amt = self.price_subtotal-self.price_subtotal_disc_amt
-                self.discount = (differnce_amt/self.price_subtotal)*100
+            differnce_amt = self.price_subtotal - self.price_subtotal_disc_amt
+            self.discount = (differnce_amt / self.price_subtotal) * 100
 
     @api.onchange('product_uom_qty', 'price_unit')
     def reset_discount_price_subtotal_disc_amt(self):
