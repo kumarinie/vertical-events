@@ -43,17 +43,23 @@
 
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">
                 <field name="event_price_edit" invisible="1"/>
-                <field name="price_subtotal_disc_amt"/>
+                <field name="price_subtotal_disc_amt" context="{'price_subtotal_disc_amt_update':1}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="context">{'event_discount_update':1}</attribute>
             </xpath>
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="attributes">
                 <attribute name="attrs">{'readonly':[('event_price_edit', '=', False)]}</attribute>
             </xpath>
             <xpath expr="//page/field[@name='order_line']/form/group/group/field[@name='price_unit']" position="after">
-                <field name="price_subtotal_disc_amt"/>
+                <field name="price_subtotal_disc_amt"  context="{'price_subtotal_disc_amt_update':1}"/>
                 <field name="event_price_edit" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="attributes">
                 <attribute name="attrs">{'readonly':[('event_price_edit', '=', False)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form//field[@name='discount']" position="attributes">
+                <attribute name="context">{'event_discount_update':1}</attribute>
             </xpath>
         </field>
     </record>
