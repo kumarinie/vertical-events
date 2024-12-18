@@ -38,6 +38,7 @@
                 <button name="action_refuse" string="Reject"
                             states="submitted" type="object" class="oe_highlight"
 							groups="website_event_exhibitors.group_event_manager_ver"/>
+                <field name="event_max_discount" invisible="1"/>
             </xpath>
 
             <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="before">

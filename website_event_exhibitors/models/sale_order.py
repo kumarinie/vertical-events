@@ -10,11 +10,55 @@ _logger = logging.getLogger(__name__)
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
+    @api.depends('order_line.price_subtotal', 'order_line.discount', 'partner_id')
+    def _event_amount_all(self):
+        """
+        Compute the total amounts of the SO.
+        """
+        Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+
+        for order in self:
+            if (order.type_id and order.type_id.id != Event_SOT):
+                order.update({
+                    'event_max_discount': 0,
+                })
+            else:
+                amount_untaxed = amount_tax = max_cdiscount = 0.0
+                cdiscount = []
+                for line in order.order_line:
+                    line_subtotal = line.price_subtotal if (int(line.price_subtotal - line.price_subtotal_disc_amt)) else line.price_subtotal_disc_amt
+                    amount_untaxed += line_subtotal
+                    cdiscount.append(line.discount)
+                    if order.company_id.tax_calculation_rounding_method == 'round_globally':
+                        price = line.price_unit * (1 - (line.discount or 0.0) / 100.0)
+                        taxes = line.tax_id.compute_all(price, line.order_id.currency_id, line.product_uom_qty,
+                                                        product=line.product_id, partner=order.partner_id)
+                        amount_tax += sum(t.get('amount', 0.0) for t in taxes.get('taxes', []))
+                    else:
+                        amount_tax += line.price_tax
+
+                if cdiscount:
+                    max_cdiscount = max(cdiscount)
+                if order.pricelist_id.currency_id:
+                    order.update({
+                        'amount_untaxed': order.pricelist_id.currency_id.round(
+                            amount_untaxed),
+                        'amount_tax': order.pricelist_id.currency_id.round(amount_tax),
+                        'amount_total': amount_untaxed + amount_tax,
+                    })
+
+                order.update({
+                    'event_max_discount': max_cdiscount,
+                })
+
+
     event_id = fields.Many2one('event.event', string='Event', ondelete='restrict', tracking=True)
     state = fields.Selection(selection_add=[
         ('submitted', "Submit for Approval"),
         ('approved1', "Approved by Sales Mgr"),
     ])
+    event_max_discount = fields.Integer(compute='_event_amount_all', store=True, string="Event Maximum Discount")
+
 
     @api.onchange('brand_id')
     def _onchange_brand(self):
@@ -197,26 +241,61 @@ class SaleOrderLine(models.Model):
     def _compute_event_price_edit(self):
         EOT = self.env.ref('website_event_exhibitors.event_sale_type').id
         for line in self:
+            sub_dis_amt = line.price_subtotal_disc_amt
+            subtotal = line.price_subtotal
             event_price_edit = False
             if line.order_id.type_id.id == EOT:
                 line.event_price_edit = False
-                if line.product_template_id and self.product_template_id.price_edit:
+                if line.product_template_id and line.product_template_id.price_edit:
                     event_price_edit = True
             line.update({
                 'event_price_edit': event_price_edit,
-                'price_subtotal_disc_amt':line.price_subtotal
             })
+            if not sub_dis_amt:
+                line.update({
+                    'price_subtotal_disc_amt': subtotal
+                })
+
+            price = round(line.price_unit * (1 - (line.discount or 0.0) / 100.0), 5)
+
+            taxes = line.tax_id.compute_all(
+                price,
+                line.order_id.currency_id,
+                line.product_uom_qty,
+                product=line.product_id,
+                partner=line.order_id.partner_id
+            )
+
+            line.update({
+                'price_tax': taxes['total_included'] - taxes['total_excluded'],
+                'price_total': taxes['total_included'],
+                'price_subtotal': taxes['total_excluded'],
+                # 'discount': discount,
+            })
+
+            if int(subtotal - sub_dis_amt) == 0:
+                line.update({
+                    'price_subtotal': sub_dis_amt
+                })
 
     price_subtotal_disc_amt = fields.Monetary(string='Subtotal after discount')
     event_price_edit = fields.Boolean(compute='_compute_event_price_edit', string='Event Price Editable')
 
-    @api.onchange('price_subtotal_disc_amt')
+    @api.onchange('price_subtotal_disc_amt', 'product_uom_qty', 'price_unit' )
     def _onchange_subtotal_discount(self):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
         if self.order_id.type_id.id == Event_SOT and self.price_unit:
             taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, self.product_uom_qty,
                                             product=self.product_id, partner=self.order_id.partner_shipping_id)
             price_subtotal = taxes['total_excluded']
-            differnce_amt = price_subtotal - self.price_subtotal_disc_amt
-            self.discount = (differnce_amt / price_subtotal) * 100
+            # differnce_amt = price_subtotal - self.price_subtotal_disc_amt
+            self.discount = round((1.0 - float(self.price_subtotal_disc_amt) / (float(price_subtotal) * float(self.product_uom_qty))) * 100.0, 5)
+            # self.discount = (differnce_amt / price_subtotal) * 100
+
+    @api.onchange('product_id')
+    def reset_discount_price_subtotal_disc_amt(self):
+        Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+        if self.order_id.type_id.id == Event_SOT:
+            self.discount = 0
+            self.price_subtotal_disc_amt = 0
 
