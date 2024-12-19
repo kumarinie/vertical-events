@@ -153,12 +153,14 @@ class SaleOrder(models.Model):
         )
         if view_type == "form":
             doc = etree.XML(ret_val["arch"])
-            order_type = self.env.context.get('default_type_id', False)
-            Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
-            if not order_type or (order_type and Event_SOT != order_type):
-
+            default_order_type = self.env.context.get('default_type_id', False)
+            order_type =[self.env.ref('website_event_exhibitors.event_sale_type').id]
+            Ad_SOT = self.env.ref('sale_advertising_order.ads_sale_type', False)
+            if Ad_SOT:
+                order_type.append(Ad_SOT.id)
+            if not default_order_type or (default_order_type and default_order_type not in order_type):
                 doc_tree = etree.XML(ret_val['fields']['order_line']['views']['tree']['arch'])
-                for node in doc_tree.xpath("//field[@name='price_unit']"):
+                for node in doc_tree.xpath("//field[@name='price_subtotal_disc_amt']"):
                     node.set('invisible', '1')
                     node.set(
                         "attrs",
@@ -174,7 +176,7 @@ class SaleOrder(models.Model):
                 ret_val['fields']['order_line']['views']['tree']['arch'] = etree.tostring(doc_tree)
 
                 doc_form = etree.XML(ret_val['fields']['order_line']['views']['form']['arch'])
-                for node in doc_form.xpath("//field[@name='price_unit']"):
+                for node in doc_form.xpath("//field[@name='price_subtotal_disc_amt']"):
                     node.set('invisible', '1')
                     node.set(
                         "attrs",
