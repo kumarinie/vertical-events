@@ -11,7 +11,9 @@
         <field name="mode">primary</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">draft,sent,submitted,approved1,sale,done</attribute>
+            </xpath>
             <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="attributes">
                 <attribute name="domain">[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id),
                     '|', ('website_id', '=', False), ('website_id', '=', parent.website_id)]</attribute>
@@ -31,7 +33,7 @@
             </xpath>
 
             <xpath expr="//button[@name='action_confirm'][1]" position="after">
-                <button name="action_submit" string="Submit for Approval" type="object" states="draft" group="event.group_event_user"/>
+                <button name="action_submit" string="Submit for Approval" type="object" states="draft,sent" group="event.group_event_user"/>
                 <button name="action_approve1" string="Approve Quotation"
                             states="submitted" type="object" class="oe_highlight"
 							groups="website_event_exhibitors.group_event_manager_ver"/>
