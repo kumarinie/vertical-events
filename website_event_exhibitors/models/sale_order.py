@@ -283,19 +283,35 @@ class SaleOrderLine(models.Model):
     price_subtotal_disc_amt = fields.Monetary(string='Subtotal after discount')
     event_price_edit = fields.Boolean(compute='_compute_event_price_edit', string='Event Price Editable')
 
+    # @api.onchange('price_subtotal_disc_amt', 'product_uom_qty', 'price_unit', 'discount')
+    # def _onchange_subtotal_discount(self):
+    #     ctx = self.env.context
+    #     Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
+    #     if self.order_id.type_id.id == Event_SOT and self.price_unit:
+    #         if 'price_subtotal_disc_amt_update' in ctx:
+    #             taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, self.product_uom_qty,
+    #                                             product=self.product_id, partner=self.order_id.partner_shipping_id)
+    #             price_subtotal = taxes['total_excluded']
+    #             # differnce_amt = price_subtotal - self.price_subtotal_disc_amt
+    #             self.discount = round((1.0 - float(self.price_subtotal_disc_amt) / (float(price_subtotal) * float(self.product_uom_qty))) * 100.0, 5)
+    #             # self.discount = (differnce_amt / price_subtotal) * 100
+    #         if 'event_discount_update' in ctx:
+    #             self.price_subtotal_disc_amt = self.price_subtotal
+
     @api.onchange('price_subtotal_disc_amt', 'product_uom_qty', 'price_unit', 'discount')
     def _onchange_subtotal_discount(self):
         ctx = self.env.context
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
-        if self.order_id.type_id.id == Event_SOT and self.price_unit:
+        if self.order_id.type_id.id == Event_SOT:
             if 'price_subtotal_disc_amt_update' in ctx:
                 taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, self.product_uom_qty,
                                                 product=self.product_id, partner=self.order_id.partner_shipping_id)
                 price_subtotal = taxes['total_excluded']
-                # differnce_amt = price_subtotal - self.price_subtotal_disc_amt
-                self.discount = round((1.0 - float(self.price_subtotal_disc_amt) / (float(price_subtotal) * float(self.product_uom_qty))) * 100.0, 5)
-                # self.discount = (differnce_amt / price_subtotal) * 100
-            if 'event_discount_update' in ctx:
+
+                self.discount = round((1.0 - float(self.price_subtotal_disc_amt) / (
+                            float(price_subtotal) * float(self.product_uom_qty))) * 100.0, 5)
+
+            else: # Reset
                 self.price_subtotal_disc_amt = self.price_subtotal
 
     @api.onchange('product_id')
