@@ -4,6 +4,7 @@
 from odoo import fields, models, api, _
 from lxml import etree
 import logging
+from odoo.exceptions import UserError, ValidationError
 
 _logger = logging.getLogger(__name__)
 
