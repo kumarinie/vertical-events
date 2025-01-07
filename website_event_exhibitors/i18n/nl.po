@@ -6,14 +6,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 14.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-21 06:06+0000\n"
-"PO-Revision-Date: 2024-03-21 06:06+0000\n"
+"POT-Creation-Date: 2024-12-18 22:38+0000\n"
+"PO-Revision-Date: 2024-12-19 00:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: \n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
+msgid "+31XXXXXXXXX"
+msgstr ""
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.registration_complete_form
@@ -38,32 +45,24 @@ msgstr "<i class=“fa fa-fw fa-calendar”/> Toevoegen aan iCal/Outlook"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
-"<option value=\"\">Excluded</option>\n"
-"                                    <option value=\"True\">Included</option>"
-msgstr ""
 "<option value=\"\">Exclusief</option>\n"
 "                                    <option value=\"True\">Inclusief</option>"
-
-#. module: website_event_exhibitors
-#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
-msgid "Included"
-msgstr "Inclusief"
-
-#. module: website_event_exhibitors
-#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
-msgid "Excluded"
-msgstr "Exclusief"
+msgstr ""
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitors_register_main
 msgid ""
-"<small><span>Would you like to receive more information, the registration form with prices or a tailor-made offer?\n"
-"                After registering for our exhibitor database, we will send you the information digitally and will contact you shortly for further\n"
+"<small><span>Would you like to receive more information, the registration form "
+"with prices or a tailor-made offer?\n"
+"                After registering for our exhibitor database, we will send you "
+"the information digitally and will contact you shortly for further\n"
 "                coordination of wishes and possibilities.</span></small>"
 msgstr ""
-"<small><span>Wilt u meer informatie, het formulier met prijzen of een offerte op maat ontvangen?\n"
+"<small><span>Wilt u meer informatie, het formulier met prijzen of een offerte op "
+"maat ontvangen?\n"
 " \n"
-"Na het registeren in onze exposanten database sturen we u de informatie digitaal toe en nemen wij zo snel mogelijk\n"
+"Na het registeren in onze exposanten database sturen we u de informatie digitaal "
+"toe en nemen wij zo snel mogelijk\n"
 "contact met u op voor de mogelijkheden..</span></small>"
 
 #. module: website_event_exhibitors
@@ -102,15 +101,17 @@ msgstr "<span class=“s_website_form_label_content”>Opmerkingen</span>"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid "<span class=\"s_website_form_label_content\">Stand Construction</span>"
-msgstr "<span class=\"s_website_form_label_content\">Standbouw</span>"
+msgstr "<span class=“s_website_form_label_content”>Standbouw</span>"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
-"<span class=\"s_website_form_label_content\">Stand Depth <small>(mts)</small></span>\n"
+"<span class=\"s_website_form_label_content\">Stand Depth <small>(mts)</small></"
+"span>\n"
 "                                 <span class=\"s_website_form_mark\"> *</span>"
-msgstr "
-"<span class=“s_website_form_label_content”>Stand diepte <small>(meter)</small></span>\n"
+msgstr ""
+"<span class=“s_website_form_label_content”>Stand diepte <small>(meter)</small></"
+"span>\n"
 "                                 <span class=“s_website_form_mark”> *</span>"
 
 #. module: website_event_exhibitors
@@ -121,10 +122,12 @@ msgstr "<span class=“s_website_form_label_content”>Standsoort</span>"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
-"<span class=\"s_website_form_label_content\">Stand Width <small>(mts)</small></span>\n"
+"<span class=\"s_website_form_label_content\">Stand Width <small>(mts)</small></"
+"span>\n"
 "                                 <span class=\"s_website_form_mark\"> *</span>"
 msgstr ""
-"<span class=“s_website_form_label_content”>Stand breedte <small>(meter)</small></span>\n"
+"<span class=“s_website_form_label_content”>Stand breedte <small>(meter)</small></"
+"span>\n"
 "                                 <span class=“s_website_form_mark”> *</span>"
 
 #. module: website_event_exhibitors
@@ -134,8 +137,7 @@ msgstr "Tekst op tekstbord"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
-msgid ""
-"<span class=\"s_website_form_label_content\">Theme of the Exhibition</span>"
+msgid "<span class=\"s_website_form_label_content\">Theme of the Exhibition</span>"
 msgstr "Thema van de beurs"
 
 #. module: website_event_exhibitors
@@ -162,17 +164,17 @@ msgid ""
 "<span class=\"s_website_form_label_content\">Your Products or Services</span>\n"
 "                                 <span class=\"s_website_form_mark\"> *</span>"
 msgstr ""
-"<span class=\"s_website_form_label_content\">Uw producten of diensten</span>\n"
-"
+"<span class=“s_website_form_label_content”>Uw producten of diensten</span>\n"
+"                                 <span class=“s_website_form_mark”> *</span>"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitor_registration_template
 msgid ""
 "<span><small>Note: The minimum stand size is 3 meters wide and 3 meters deep "
-" (3x3).</small></span>"
+"(3x3).</small></span>"
 msgstr ""
 "<span><small>Let op: De minimum standruimte is 3 meter breed en 3 meter diep "
-" (3x3).</small></span>"
+"(3x3).</small></span>"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.exhibitors_register_main
@@ -186,9 +188,24 @@ msgid "<strong>Subtotal ex. vat</strong>"
 msgstr "<strong>Subtotaal excl. BTW</strong>"
 
 #. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_event__analytic_account_id
+msgid "Analytic Account"
+msgstr "Kostenplaats"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.view_order_form
+msgid "Approve Quotation"
+msgstr "Offerte goedkeuren"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields.selection,name:website_event_exhibitors.selection__sale_order__state__approved1
+msgid "Approved by Sales Mgr"
+msgstr "Goedgekeurd door Sales Manager"
+
+#. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_product_category_action_form4
 msgid "Attributes"
-msgstr ""
+msgstr "Kenmerken"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_crm_lead__brand_id
@@ -196,12 +213,12 @@ msgstr ""
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_report__brand_id
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.view_order_product_search
 msgid "Brand"
-msgstr ""
+msgstr "Merk"
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_event_config
 msgid "Configuration"
-msgstr ""
+msgstr "Configuratie"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_form
@@ -227,17 +244,17 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_form
 msgid "Contact Information"
-msgstr ""
+msgstr "Contact informatie"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.product_template_action_event
 msgid "Create a new product"
-msgstr ""
+msgstr "Maak een nieuw product aan"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.product_normal_action_sell_event
 msgid "Create a new product variant"
-msgstr ""
+msgstr "Maak een nieuwe productvariant aan"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.action_orders_event
@@ -272,7 +289,17 @@ msgstr "Klant"
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_partners4
 msgid "Customers"
-msgstr ""
+msgstr "Klanten"
+
+#. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_event_view_form2
+msgid "Default Product"
+msgstr "Standaard product"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_event_event__default_product_ids
+msgid "Default Products"
+msgstr "Standaard producten"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__stand_depth
@@ -291,9 +318,12 @@ msgstr "Diepte van de stand in meters"
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type__display_name
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_product_template__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_res_partner__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order__display_name
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_report__display_name
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_website__display_name
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_website_event_menu__display_name
 msgid "Display Name"
 msgstr "Schermnaam"
@@ -326,17 +356,27 @@ msgstr "E-mail"
 #: model:product.attribute,name:website_event_exhibitors.attribute_event
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.view_order_product_search
 msgid "Event"
-msgstr "Evenement"
+msgstr "Event"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_exhibition_theme_view_tree
 msgid "Event Exhibition Themes"
-msgstr ""
+msgstr "Event Beurs Thema’s"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order__event_max_discount
+msgid "Event Maximum Discount"
+msgstr "Event maximale korting"
 
 #. module: website_event_exhibitors
 #: model:sale.order.type,name:website_event_exhibitors.event_sale_type
 msgid "Event Order"
 msgstr ""
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__event_price_edit
+msgid "Event Price Editable"
+msgstr "Event prijs aanpasbaar"
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.event_sale_menu_root
@@ -346,17 +386,17 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_event_sponsor
 msgid "Event Sponsor"
-msgstr "Evenement sponsor"
+msgstr "Event sponsor"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_stand_type_view_tree
 msgid "Event Stand Type"
-msgstr "Evenement Standsoort"
+msgstr "Event Standsoort"
 
 #. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_event_type
 msgid "Event Template"
-msgstr "Evenementsjabloon"
+msgstr "Event sjabloon"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,help:website_event_exhibitors.field_crm_lead__event_id
@@ -366,7 +406,7 @@ msgstr "Gebeurtenis die de regel activeert die deze lead heeft gemaakt."
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_exhibition_theme__event_ids
 msgid "Events"
-msgstr "Evenement"
+msgstr "Event"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
@@ -409,12 +449,12 @@ msgstr "Exposant Mobiel"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_tree
 msgid "Exhibitor Name"
-msgstr ""
+msgstr "Exposant Naam"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__name
 msgid "Exhibitor Name/Company"
-msgstr ""
+msgstr "Exposant Naam/Bedrijf"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__phone
@@ -461,9 +501,12 @@ msgstr "Exposant registratie menu’s"
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type__id
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_product_template__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_res_partner__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order__id
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_report__id
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_website__id
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_website_event_menu__id
 msgid "ID"
 msgstr ""
@@ -481,9 +524,12 @@ msgstr "Inclusief Standbouw"
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_stand_type____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_type____last_update
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_product_template____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_res_partner____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order____last_update
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_report____last_update
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_website____last_update
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_website_event_menu____last_update
 msgid "Last Modified on"
 msgstr "Laatst gewijzigd op"
@@ -502,7 +548,6 @@ msgstr "Laatst gewijzigd op"
 
 #. module: website_event_exhibitors
 #: code:addons/website_event_exhibitors/models/event_sponsor.py:0
-#: code:addons/website_event_exhibitors/models/event_sponsor.py:0
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__lead_id
 #, python-format
 msgid "Lead"
@@ -512,6 +557,11 @@ msgstr ""
 #: model:ir.model,name:website_event_exhibitors.model_crm_lead
 msgid "Lead/Opportunity"
 msgstr "Lead/Verkoopkans"
+
+#. module: website_event_exhibitors
+#: model:res.groups,name:website_event_exhibitors.group_event_manager_ver
+msgid "Manager"
+msgstr ""
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_website_event_menu__menu_type
@@ -532,21 +582,21 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.action_quotations_event
 msgid ""
-"Once the quotation is confirmed by the customer, it becomes a sales "
-"order.<br> You will be able to create an invoice and collect the payment."
+"Once the quotation is confirmed by the customer, it becomes a sales order.<br> "
+"You will be able to create an invoice and collect the payment."
 msgstr ""
 
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.action_orders_event
 msgid ""
-"Once the quotation is confirmed, it becomes a sales order.<br> You will be "
-"able to create an invoice and collect the payment."
+"Once the quotation is confirmed, it becomes a sales order.<br> You will be able "
+"to create an invoice and collect the payment."
 msgstr ""
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_action_sale_order_report_all1
 msgid "Order Analysis"
-msgstr ""
+msgstr "Order analyse"
 
 #. module: website_event_exhibitors
 #: model:ir.actions.act_window,name:website_event_exhibitors.action_orders_event
@@ -563,23 +613,34 @@ msgstr "Partner Bedrijf"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__partner_contact
 msgid "Partner Contact"
-msgstr ""
+msgstr "Contactpersoon"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_product_product__price_edit
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_product_template__price_edit
+msgid "Price Editable"
+msgstr "Prijs aanpasbaar"
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_product_pricelist_action3
 msgid "Pricelists"
-msgstr ""
+msgstr "Prijslijsten"
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_attribute_action4
 msgid "Product Categories"
-msgstr ""
+msgstr "Productcategorieën"
+
+#. module: website_event_exhibitors
+#: model:ir.model,name:website_event_exhibitors.model_product_template
+msgid "Product Template"
+msgstr "Product"
 
 #. module: website_event_exhibitors
 #: model:ir.actions.act_window,name:website_event_exhibitors.product_normal_action_sell_event
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_product_normal_action_sell1
 msgid "Product Variants"
-msgstr ""
+msgstr "Productvarianten"
 
 #. module: website_event_exhibitors
 #: model:ir.actions.act_window,name:website_event_exhibitors.product_template_action_event
@@ -587,7 +648,7 @@ msgstr ""
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_product_template_action1
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_products_subconfig4
 msgid "Products"
-msgstr ""
+msgstr "Producten"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__prod_remarks
@@ -603,7 +664,7 @@ msgstr ""
 #: model:ir.actions.act_window,name:website_event_exhibitors.action_quotations_event
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_sale_quotations4
 msgid "Quotations"
-msgstr ""
+msgstr "Offertes"
 
 #. module: website_event_exhibitors
 #: code:addons/website_event_exhibitors/models/event_event.py:0
@@ -619,6 +680,7 @@ msgstr "Registratieverzoek ingediend!"
 
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_form
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.view_order_form
 msgid "Reject"
 msgstr "Afwijzen"
 
@@ -626,6 +688,11 @@ msgstr "Afwijzen"
 #: model:ir.model.fields.selection,name:website_event_exhibitors.selection__event_sponsor__state__reject
 msgid "Rejected"
 msgstr "Afgewezen"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,help:website_event_exhibitors.field_event_event__analytic_account_id
+msgid "Related Analytic Account"
+msgstr "Gerelateerde kostenplaats"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__remarks
@@ -640,7 +707,7 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model:ir.actions.act_window,name:website_event_exhibitors.action_order_report_all
 msgid "Sales Analysis"
-msgstr ""
+msgstr "Verkoopanalyse"
 
 #. module: website_event_exhibitors
 #: model:ir.model,name:website_event_exhibitors.model_sale_report
@@ -651,6 +718,11 @@ msgstr "Verkoopanalyserapport"
 #: model:ir.model,name:website_event_exhibitors.model_sale_order
 msgid "Sales Order"
 msgstr "Verkooporder"
+
+#. module: website_event_exhibitors
+#: model:ir.model,name:website_event_exhibitors.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Verkooporderregel"
 
 #. module: website_event_exhibitors
 #: model:ir.ui.menu,name:website_event_exhibitors.sales_team_config4
@@ -666,7 +738,7 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_kanban_inherit
 msgid "Sponsor image"
-msgstr ""
+msgstr "Sponsor afbeelding"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__sponsor_type_id
@@ -693,10 +765,11 @@ msgstr "Standsoort"
 #: model:ir.actions.act_window,name:website_event_exhibitors.event_stand_type_action
 #: model:ir.ui.menu,name:website_event_exhibitors.menu_event_stand_type
 msgid "Stand Types"
-msgstr "Stand soorten"
+msgstr "Standsoorten"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__state
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order__state
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.event_sponsor_view_search
 msgid "Status"
 msgstr ""
@@ -707,6 +780,21 @@ msgid "Submit Request"
 msgstr "Verzoek Indienen"
 
 #. module: website_event_exhibitors
+#: model_terms:ir.ui.view,arch_db:website_event_exhibitors.view_order_form
+msgid "Submit for Approval"
+msgstr "Indienen ter goedkeuring"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields.selection,name:website_event_exhibitors.selection__sale_order__state__submitted
+msgid "Submitted for Approval"
+msgstr "Ingediend ter goedkeuring"
+
+#. module: website_event_exhibitors
+#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__price_subtotal_disc_amt
+msgid "Subtotal after discount"
+msgstr "Subtotaal na korting"
+
+#. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__stand_surface_area
 msgid "Surface Area (sq.m)"
 msgstr "Oppervlakte in m2"
@@ -714,7 +802,7 @@ msgstr "Oppervlakte in m2"
 #. module: website_event_exhibitors
 #: model:ir.model.fields,help:website_event_exhibitors.field_event_sponsor__stand_surface_area
 msgid "Surface Area for Stand in Sq mtrs"
-msgstr "Oppervlakte van de Stand in m2"
+msgstr "Oppervlakte van de stand in m2"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__textboard
@@ -746,10 +834,10 @@ msgstr "Thema van de beurs"
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.action_order_report_all
 msgid ""
 "This report performs analysis on your quotations and sales orders. Analysis "
-"check your sales revenues and sort it by different group criteria (salesman,"
-" partner, product, etc.) Use this report to perform analysis on sales not "
-"having invoiced yet. If you want to analyse your turnover, you should use "
-"the Invoice Analysis report in the Accounting application."
+"check your sales revenues and sort it by different group criteria (salesman, "
+"partner, product, etc.) Use this report to perform analysis on sales not having "
+"invoiced yet. If you want to analyse your turnover, you should use the Invoice "
+"Analysis report in the Accounting application."
 msgstr ""
 
 #. module: website_event_exhibitors
@@ -758,6 +846,7 @@ msgid "Visitor"
 msgstr "Bezoeker"
 
 #. module: website_event_exhibitors
+#: model:ir.model,name:website_event_exhibitors.model_website
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__website_id
 msgid "Website"
 msgstr ""
@@ -770,7 +859,7 @@ msgstr "Website evenementen menu"
 #. module: website_event_exhibitors
 #: model_terms:ir.ui.view,arch_db:website_event_exhibitors.product_template_search_view_inherit
 msgid "Website Products"
-msgstr ""
+msgstr "Website producten"
 
 #. module: website_event_exhibitors
 #: model:ir.model.fields,field_description:website_event_exhibitors.field_event_sponsor__stand_width
@@ -783,6 +872,12 @@ msgid "Width of Stand in mtrs"
 msgstr "Breedte van de Stand in meter"
 
 #. module: website_event_exhibitors
+#: code:addons/website_event_exhibitors/models/sale_order.py:0
+#, python-format
+msgid "You cannot submit a quotation/sales order which has no line."
+msgstr ""
+
+#. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.product_template_action_event
 msgid ""
 "You must define a product for everything you sell or purchase,\n"
@@ -792,7 +887,8 @@ msgstr ""
 #. module: website_event_exhibitors
 #: model_terms:ir.actions.act_window,help:website_event_exhibitors.product_normal_action_sell_event
 msgid ""
-"You must define a product for everything you sell, whether it's a physical product,\n"
+"You must define a product for everything you sell, whether it's a physical "
+"product,\n"
 "\t\t\t\ta consumable or a service you offer to customers.\n"
 "\t\t\t\tThe product form contains information to simplify the sale process:\n"
 "\t\t\t\tprice, notes in the quotation, accounting data, procurement methods, etc."
@@ -807,8 +903,3 @@ msgstr ""
 #: model:ir.model,name:website_event_exhibitors.model_event_stand_type
 msgid "event.stand.type"
 msgstr ""
-
-#. module: website_event_exhibitors
-#: model:ir.model.fields,field_description:website_event_exhibitors.field_sale_order_line__price_subtotal_disc_amt
-msgid "Subtotal after discount"
-msgstr "Subtotaal na korting"
