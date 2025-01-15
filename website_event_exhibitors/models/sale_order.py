@@ -305,7 +305,7 @@ class SaleOrderLine(models.Model):
         Event_SOT = self.env.ref('website_event_exhibitors.event_sale_type').id
         if self.order_id.type_id.id == Event_SOT:
             if 'price_subtotal_disc_amt_update' in ctx:
-                taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, self.product_uom_qty,
+                taxes = self.tax_id.compute_all(self.price_unit, self.order_id.currency_id, 1,
                                                 product=self.product_id, partner=self.order_id.partner_shipping_id)
                 price_subtotal = taxes['total_excluded']
 
